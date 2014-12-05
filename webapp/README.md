@@ -4,3 +4,9 @@ Data comes from [espn.go.com/nba/](http://espn.go.com/nba/)
 Use the following command in your terminal to install required packages:
 
     pip install -r requirements.txt
+
+Execute run.py to start local server
+
+    python run.py
+
+Open [localhost:8888/](localhost:8888/) in your browser to access the web app
