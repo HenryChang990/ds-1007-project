@@ -16,11 +16,8 @@ class salaries_regression(object):
         """
         This function is to do linear regression on salaries and nba stats data.
         
-        Attribute:
-        nba_df: a merged dataframe with salaries and nba stats for regression.
-        
         Return:
-        nba_df: a new dataframe with regression results. 
+        self.df: a new dataframe with regression results. 
                 adding predicted value, and difference between predicted value and true value into original dataframe.
         """
         
@@ -35,9 +32,6 @@ class salaries_regression(object):
         """
         This function is to plot the regression results.
         
-        Attribute:
-        nba_df: a dataframe containing regression results.
-        
         Note:
         By calling this function, you will get a scatter plot on predicted salaries and true salaries.
         """
@@ -45,6 +39,7 @@ class salaries_regression(object):
         self.df[['SALARY','Predicted']].plot(kind='scatter',x='SALARY',y='Predicted',alpha=0.5,color='g',s=50)
         reference = np.arange(self.df['SALARY'].min(),self.df['SALARY'].max(),1000) 
         plt.plot(reference,reference,'k--',alpha=0.7) #a reference line y = x
+        plt.title('Regression results for salaries in {}'.format(self.year))
         plt.show()
     
     def salaries_analysis_add_text(self,ax,df,label):
@@ -69,9 +64,8 @@ class salaries_regression(object):
         This function is to plot the top 10 underpriced player for a given year in a given range.
         Calling this function, you will get a bar plot.
         
-        Attributes:
-        nba_df: a dataframe containing regression results.
-        year: a year from 1999-2014.
+        Attribute:
+        rank: a selected ranking range. e.g., if the user wants to see the top 10 overpriced player before ranking 100, then rank = 100
         """
         
         nba_df_SA = self.df[self.df.Predicted > 0] #drop players whose predicted salaries are negtive
@@ -89,9 +83,7 @@ class salaries_regression(object):
         Calling this function, you will get a bar plot.
         
         Attributes:
-        nba_df: a dataframe containing regression results.
         rank: a selected ranking. e.g., if the user wants to see the top 10 overpriced player before ranking 100, then rank = 100
-        year: a year from 1999-2014.
         """
         
         nba_df_SA = self.df[self.df.Predicted > 0] #drop players whose predicted salaries are negtive
