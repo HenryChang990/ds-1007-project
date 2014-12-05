@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">NBA Stats</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="#">Overview</a></li>
+	    <li><a href="#">Players</a></li>
+	    <li><a href="#">Facts</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+	    <li><a href="/overview/{{year}}">All<span class="sr-only">(current)</span></a></li>
+	    <li><a href="/overview/{{year}}/c">Center</a></li>
+	    <li><a href="/overview/{{year}}/pf">Power Forward</a></li>
+	    <li><a href="/overview/{{year}}/sf">Small Forward</a></li>
+	    <li><a href="/overview/{{year}}/sg">Shooting Guard</a></li>
+	    <li><a href="/overview/{{year}}/pg">Point Guard</a></li>	    
+	  </ul>
+	</div>
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	  <h1 class="page-header">Season {{season}} {{position}}</h1>
+	  <div class="dropdown">
+	    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	      Year
+	      <span class="caret"></span>
+	    </button>
+	    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	      {% for year in years %}
+	      <li role="presentation"><a role="menuitem" tabindex="-1" href="/overview/{{year}}">{{year}}</a></li>
+	      {% endfor %}
+	    </ul>
+	  </div>
+
+	  <h2 class="sub-header">Points Per Game Leaders</h2>
+	  <div class="table-responsive">
+	    <table class="table table-striped">
+	      <thead>
+		<tr>
+		  <th>PLAYER</th>
+		  <th>POS</th>
+		  <th>TEAM</th>
+		  <th>GP</th>
+		  <th>MIN</th>
+		  <th>PTS</th>
+		  <th>FG%</th>
+		  <th>3P%</th>
+		  <th>FT%</th>
+		<tr>  
+	      </thead>
+	      <tbody>
+		{% for item in data[0] %}
+		<tr>
+		  <td>{{item.PLAYER}}</td>
+		  <td>{{item.POS}}</td>
+		  <td>{{item.TEAM}}</td>
+		  <td>{{item.GP}}</td>
+		  <td>{{item.MIN}}</td>
+		  <td>{{item.PPG}}</td>
+		  <td>{{item['FG%']}}</td>
+		  <td>{{item['3P%']}}</td>
+		  <td>{{item['FT%']}}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+
+	  <div>
+	    {{plots[0]}}
+	  </div>
+	  
+	  <h2 class="sub-header">Rebounds Per Game Leaders</h2>
+	  <div class="table-responsive">
+	    <table class="table table-striped">
+	      <thead>
+		<tr>
+		  <th>PLAYER</th>
+		  <th>POS</th>
+		  <th>TEAM</th>
+		  <th>GP</th>
+		  <th>MIN</th>
+		  <th>OFFR</th>
+		  <th>DEFR</th>
+		  <th>REB</th>
+		<tr>  
+	      </thead>
+	      <tbody>
+		{% for item in data[1] %}
+		<tr>
+		  <td>{{item.PLAYER}}</td>
+		  <td>{{item.POS}}</td>
+		  <td>{{item.TEAM}}</td>
+		  <td>{{item.GP}}</td>
+		  <td>{{item.MIN}}</td>
+		  <td>{{item.OFFR}}</td>
+		  <td>{{item.DEFR}}</td>
+		  <td>{{item.RPG}}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+
+	  <div>
+	    {{plots[1]}}
+	  </div>
+	  
+	  <h2 class="sub-header">Assists Per Game Leaders</h2>	
+	  <div class="table-responsive">
+	    <table class="table table-striped">
+	      <thead>
+		<tr>
+		  <th>PLAYER</th>
+		  <th>POS</th>
+		  <th>TEAM</th>
+		  <th>GP</th>
+		  <th>MIN</th>
+		  <th>AST</th>
+		  <th>PTS</th>
+		<tr>  
+	      </thead>
+	      <tbody>
+		{% for item in data[2] %}
+		<tr>
+		  <td>{{item.PLAYER}}</td>
+		  <td>{{item.POS}}</td>
+		  <td>{{item.TEAM}}</td>
+		  <td>{{item.GP}}</td>
+		  <td>{{item.MIN}}</td>
+		  <td>{{item.APG}}</td>
+		  <td>{{item.PPG}}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+	  
+	  <div>
+	    {{plots[2]}}
+	  </div>
+
+	  <h2 class="sub-header">Steals Per Game Leaders</h2>	
+	  <div class="table-responsive">
+	    <table class="table table-striped">
+	      <thead>
+		<tr>
+		  <th>PLAYER</th>
+		  <th>POS</th>
+		  <th>TEAM</th>
+		  <th>GP</th>
+		  <th>MIN</th>
+		  <th>STL</th>
+		<tr>  
+	      </thead>
+	      <tbody>
+		{% for item in data[3] %}
+		<tr>
+		  <td>{{item.PLAYER}}</td>
+		  <td>{{item.POS}}</td>
+		  <td>{{item.TEAM}}</td>
+		  <td>{{item.GP}}</td>
+		  <td>{{item.MIN}}</td>
+		  <td>{{item.SPG}}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+	  
+	  <div>
+	    {{plots[3]}}
+	  </div>
+
+	  <h2 class="sub-header">Blocks Per Game Leaders</h2>	
+	  <div class="table-responsive">
+	    <table class="table table-striped">
+	      <thead>
+		<tr>
+		  <th>PLAYER</th>
+		  <th>POS</th>
+		  <th>TEAM</th>
+		  <th>GP</th>
+		  <th>MIN</th>
+		  <th>BLK</th>
+		<tr>  
+	      </thead>
+	      <tbody>
+		{% for item in data[4] %}
+		<tr>
+		  <td>{{item.PLAYER}}</td>
+		  <td>{{item.POS}}</td>
+		  <td>{{item.TEAM}}</td>
+		  <td>{{item.GP}}</td>
+		  <td>{{item.MIN}}</td>
+		  <td>{{item.BPG}}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	  </div>
+	  <div>
+	    {{plots[4]}}
+	  </div>
+
+	</div>
+      </div>
+    </div>
+
+        <!-- Bootstrap core JavaScript
+	     ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
