@@ -7,13 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>NBA Stats</title>
 
     <!-- Bootstrap core CSS -->
+    {% raw %}
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+    {% endraw %}
   </head>
 
   <body>
@@ -31,9 +33,9 @@
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#">Overview</a></li>
-	    <li><a href="#">Players</a></li>
-	    <li><a href="#">Facts</a></li>
+	    <li><a href="/">Overview</a></li>
+	    <li><a href="/players/info">Players</a></li>
+	    <li><a href="#">Salaries</a></li>
 	  </ul>
 	</div>
       </div>
@@ -52,58 +54,67 @@
 	  </ul>
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	  <h1 class="page-header">Season {{season}} {{position}}</h1>
-	  <div class="dropdown">
-	    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	  <div class="page-header">
+	    <h1>Season {{season}} <small>{{position}}</small></h1>
+	    <div class="dropdown" align="right">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	      Year
 	      <span class="caret"></span>
-	    </button>
-	    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-	      {% for year in years %}
-	      <li role="presentation"><a role="menuitem" tabindex="-1" href="/overview/{{year}}">{{year}}</a></li>
-	      {% endfor %}
-	    </ul>
-	  </div>
-
-	  <h2 class="sub-header">Points Per Game Leaders</h2>
-	  <div class="table-responsive">
-	    <table class="table table-striped">
-	      <thead>
-		<tr>
-		  <th>PLAYER</th>
-		  <th>POS</th>
-		  <th>TEAM</th>
-		  <th>GP</th>
-		  <th>MIN</th>
-		  <th>PTS</th>
-		  <th>FG%</th>
-		  <th>3P%</th>
-		  <th>FT%</th>
-		<tr>  
-	      </thead>
-	      <tbody>
-		{% for item in data[0] %}
-		<tr>
-		  <td>{{item.PLAYER}}</td>
-		  <td>{{item.POS}}</td>
-		  <td>{{item.TEAM}}</td>
-		  <td>{{item.GP}}</td>
-		  <td>{{item.MIN}}</td>
-		  <td>{{item.PPG}}</td>
-		  <td>{{item['FG%']}}</td>
-		  <td>{{item['3P%']}}</td>
-		  <td>{{item['FT%']}}</td>
-		</tr>
+	      </button>
+	      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		{% for year in years %}
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="/overview/{{year}}">{{year}}</a></li>
 		{% endfor %}
-	      </tbody>
-	    </table>
+	      </ul>
+	    </div>  <!-- end of dropdown button -->
+	  </div>  <!-- end of page-header -->
+	  
+	  <div class="panel panel-default">
+	    <h2 class="panel-title panel-heading">Points Per Game Leaders</h2>
+	    <div class="table-responsive">
+	      <table class="table table-striped">
+		<thead>
+		  <tr>
+		    <th>PLAYER</th>
+		    <th>POS</th>
+		    <th>TEAM</th>
+		    <th>GP</th>
+		    <th>MIN</th>
+		    <th>PTS</th>
+		    <th>FG%</th>
+		    <th>3P%</th>
+		    <th>FT%</th>
+		  <tr>  
+		</thead>
+		<tbody>
+		  {% for item in data[0] %}
+		  <tr>
+		    <td>{{item.PLAYER}}</td>
+		    <td>{{item.POS}}</td>
+		    <td>{{item.TEAM}}</td>
+		    <td>{{item.GP}}</td>
+		    <td>{{item.MIN}}</td>
+		    <td>{{item.PPG}}</td>
+		    <td>{{item['FG%']}}</td>
+		    <td>{{item['3P%']}}</td>
+		    <td>{{item['FT%']}}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	      </table>
+	    </div>
 	  </div>
-
+	  
 	  <div>
 	    {{plots[0]}}
 	  </div>
-	  
-	  <h2 class="sub-header">Rebounds Per Game Leaders</h2>
+
+	  <div class="page-header">
+	    <h1></h1>
+	  </div>
+
+	  <div class="panel panel-default">
+	  <h2 class="panel-heading panel-title">Rebounds Per Game Leaders</h2>
 	  <div class="table-responsive">
 	    <table class="table table-striped">
 	      <thead>
@@ -134,12 +145,18 @@
 	      </tbody>
 	    </table>
 	  </div>
-
+	  </div>
+	  
 	  <div>
 	    {{plots[1]}}
 	  </div>
-	  
-	  <h2 class="sub-header">Assists Per Game Leaders</h2>	
+
+	  <div class="page-header">
+	    <h1></h1>
+	  </div>
+
+	  <div class="panel panel-default">
+	  <h2 class="panel-heading panel-title">Assists Per Game Leaders</h2>	
 	  <div class="table-responsive">
 	    <table class="table table-striped">
 	      <thead>
@@ -168,12 +185,18 @@
 	      </tbody>
 	    </table>
 	  </div>
+	  </div>
 	  
 	  <div>
 	    {{plots[2]}}
 	  </div>
 
-	  <h2 class="sub-header">Steals Per Game Leaders</h2>	
+	  <div class="page-header">
+	    <h1></h1>
+	  </div>
+
+	  <div class="panel panel-default">
+	  <h2 class="panel-heading panel-title">Steals Per Game Leaders</h2>	
 	  <div class="table-responsive">
 	    <table class="table table-striped">
 	      <thead>
@@ -200,12 +223,18 @@
 	      </tbody>
 	    </table>
 	  </div>
+	  </div>
 	  
 	  <div>
 	    {{plots[3]}}
 	  </div>
 
-	  <h2 class="sub-header">Blocks Per Game Leaders</h2>	
+	  <div class="page-header">
+	    <h1></h1>
+	  </div>
+
+	  <div class="panel panel-default">
+	  <h2 class="panel-heading panel-title">Blocks Per Game Leaders</h2>	
 	  <div class="table-responsive">
 	    <table class="table table-striped">
 	      <thead>
@@ -232,6 +261,8 @@
 	      </tbody>
 	    </table>
 	  </div>
+	  </div>
+	  
 	  <div>
 	    {{plots[4]}}
 	  </div>
@@ -244,6 +275,6 @@
 	     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>
