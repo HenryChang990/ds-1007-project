@@ -5,6 +5,7 @@ from . import plotting, utility
 PKG = 'nbastats'
 POSITIONS = {'c':'Center', 'pf':'Power Forward', 'sf':'Small Forward', 'sg':'Shooting Guard', 'pg':'Point Guard', 'all' :'All Players'}
 STATS = ['PPG', 'RPG', 'APG', 'SPG', 'BPG']
+YEARS = xrange(2000, 2015)
 
 def render_leaders(stats, position, n_top, year, temp_dir, temp_file):
     """ take in a dataframe, return rendered templates with data of top player stats in PTS, REB, AST, STL, and BLK """
@@ -39,3 +40,9 @@ def render_league_info(counts, temp_dir, temp_file):
     template = env.get_template(temp_file)
     return template.render(plots=plots, counts=counts)
 
+def render_player(player, stats, years, img_src, temp_dir, temp_file):
+    """ render page for individual player """
+    env = Environment(loader=PackageLoader(PKG, temp_dir))
+    template = env.get_template(temp_file)
+    return template.render(name=player, img_src=img_src)
+    

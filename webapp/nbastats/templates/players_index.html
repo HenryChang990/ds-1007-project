@@ -63,22 +63,22 @@
 
 	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
 	    {% for name in players[0] %}
-	    <a href="#" class="list-group-item">{{name}}</a>
+	    <a href="/players/{{option}}/{{name|replace(' ', '-')|lower}}" class="list-group-item">{{name}}</a>
 	    {% endfor %}
 	  </div>
 	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
 	    {% for name in players[1] %}
-	    <a href="#" class="list-group-item">{{name}}</a>
+	    <a href="/players/{{option}}/{{name|replace(' ', '-')|lower}}" class="list-group-item">{{name}}</a>
 	    {% endfor %}
 	  </div>
 	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
 	    {% for name in players[2] %}
-	    <a href="#" class="list-group-item">{{name}}</a>
+	    <a href="/players/{{option}}/{{name|replace(' ', '-')|lower}}" class="list-group-item">{{name}}</a>
 	    {% endfor %}
 	  </div>
 	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
 	    {% for name in players[3] %}
-	    <a href="#" class="list-group-item">{{name}}</a>
+	    <a href="/players/{{option}}/{{name|replace(' ', '-')|lower}}" class="list-group-item">{{name}}</a>
 	    {% endfor %}
 	  </div>
 	  
