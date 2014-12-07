@@ -88,6 +88,10 @@ body {
 .list-group {
     margin-top: 30px;
 }
+
+.pie g.mpld3-xaxis, .pie g.mpld3-yaxis {
+    display: none;
+}
 /*
  * Placeholder dashboard ideas
  */

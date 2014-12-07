@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NBA Players</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">NBA Stats</a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="/overview/2014">Overview</a></li>
+	    <li><a href="/players/info">Players</a></li>
+	    <li><a href="#">Salaries</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+	    <li class="active"><a href="/players/info">League Info</a></li>
+	    <li><a href="/players/current">Current Players</a></li>
+	    <li><a href="/players/historic">Historic Players</a></li>
+	  </ul>
+	</div>
+	
+	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+	  <div class="col-md-6 col-sm-6 col-xs-10">
+	    <div class="panel panel-default pie">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Percentage of Players by Position <small>2014</small></h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[0]}}
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-6 col-sm-6 col-xs-10">
+	    <div class="panel panel-default pie">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[1]}}
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-8 col-sm-8 col-xs-12">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Number of Players in Each Position by Season <small>2000-2014</small></h3>
+	      </div>
+	      <div class="panel-body">
+		{{plots[2]}}
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-4 col-sm-4">
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Number of Players by Position</h3>
+	      </div>
+	      <table class="table table-striped">
+		<thead>
+		  <tr>
+		    <th>Position</th>
+		    <th>1999-2000</th>
+		    <th>2013-2014</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <td>C</td>
+		    <td>{{counts[2000][0]}}</td>
+		    <td>{{counts[2014][0]}}</td>
+		  </tr>
+		  <tr>
+		    <td>PF</td>
+		    <td>{{counts[2000][1]}}</td>
+		    <td>{{counts[2014][1]}}</td>
+		  </tr>
+		  <tr>
+		    <td>SF</td>
+		    <td>{{counts[2000][2]}}</td>
+		    <td>{{counts[2014][2]}}</td>
+		  </tr>
+		  <tr>
+		    <td>SG</td>
+		    <td>{{counts[2000][3]}}</td>
+		    <td>{{counts[2014][3]}}</td>
+		  </tr>
+		  <tr>
+		    <td>PG</td>
+		    <td>{{counts[2000][4]}}</td>
+		    <td>{{counts[2014][4]}}</td>
+		  </tr>
+		</tbody>
+	      </table>
+	    </div>
+	  </div>
+	  
+	</div>
+	
+      </div>
+    </div>
+
+        <!-- Bootstrap core JavaScript
+	     ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

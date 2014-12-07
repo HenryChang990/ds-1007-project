@@ -1,38 +1,13 @@
 import tornado.ioloop 
 import tornado.web
 import signal, os
-from jinja2 import Environment, PackageLoader
 import pandas as pd
 import numpy as np
-from nbastats import plotting
+from nbastats import rendering, utility
 
+# define some constants
 YEARS = xrange(2000, 2015)
 TEMPLATE_DIR = 'templates'
-PKG = 'nbastats'
-POSITIONS = {'c':'Center', 'pf':'Power Forward', 'sf':'Small Forward', 'sg':'Shooting Guard', 'pg':'Point Guard', 'all':'All Players'}
-STATS = ['PPG', 'RPG', 'APG', 'SPG', 'BPG']
-
-def render_leaders(stats, n_top, year, temp_dir, temp_file, position):
-    """ take in a dataframe, return rendered templates with data of top player stats in PTS, REB, AST, STL, and BLK """
-    leader_stats = []
-    plots = []
-    for stat in STATS:
-        leader_stats.append(stats.sort(stat, ascending=False)[:n_top].to_dict(orient='record'))
-        plots.append(plotting.hist_plot(np.array(stats[stat]), '{} Distribution in the League'.format(stat)))
-    env = Environment(loader=PackageLoader(PKG, temp_dir))
-    template = env.get_template(temp_file)
-    
-    return template.render(data=leader_stats, years=YEARS, year=year, season='{}-{}'.format(int(year)-1, year), position=POSITIONS[position], plots=plots)
-
-def render_players(players, position, option, temp_dir, temp_file):
-    """ """
-    players_in_pos = np.array(players.PLAYER[players['POS']==position.upper()])
-    n = len(players_in_pos)
-    players_cols = [players_in_pos[:n/4+1], players_in_pos[(n/4+1):(n/2+2)], players_in_pos[(n/2+2):(3*n/4+3)], players_in_pos[(3*n/4+3):]]
-    count = np.array(players.groupby('POS').count()['PLAYER'][['C', 'PF', 'SF', 'SG', 'PG']])
-    env = Environment(loader=PackageLoader(PKG, temp_dir))
-    template = env.get_template(temp_file)
-    return template.render(option=option, position=position, count=count, players=players_cols)
 
 class OverviewHandler(tornado.web.RequestHandler):
     """ Request Handler for /overview/year """
@@ -44,7 +19,7 @@ class OverviewHandler(tornado.web.RequestHandler):
             print 'data not found'
             raise tornado.web.HTTPError(500)
 
-        self.write(render_leaders(stats, 12, year, TEMPLATE_DIR, 'overview.html', 'all'))
+        self.write(rendering.render_leaders(stats, 'all', 12, year, TEMPLATE_DIR, 'overview.html'))
 
 class PositionHandler(tornado.web.RequestHandler):
     """ Request handler for /overview/year/position """
@@ -55,7 +30,7 @@ class PositionHandler(tornado.web.RequestHandler):
             print 'data not found'
             raise tornado.web.HTTPError(500)
         pos = position.upper()
-        self.write(render_leaders(stats[stats.POS==pos], 8, year, TEMPLATE_DIR, 'overview.html', position))
+        self.write(rendering.render_leaders(stats[stats.POS==pos], position, 8, year, TEMPLATE_DIR, 'overview.html'))
 
 class PlayersListHandler(tornado.web.RequestHandler):
     """ Request handler for /players/name """
@@ -65,13 +40,20 @@ class PlayersListHandler(tornado.web.RequestHandler):
         except IOError:
             raise tornado.web.HTTPError(500)
         
-        self.write(render_players(players, position, option, TEMPLATE_DIR, 'players_index.html'))
+        self.write(rendering.render_players(players, position, option, TEMPLATE_DIR, 'players_index.html'))
         
 class PlayersOverviewHandler(tornado.web.RequestHandler):
     """ """
     def get(self):
-        pass
-    
+        position_counts = {}
+        for year in YEARS:
+            try:
+                stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(year))
+            except IOError:
+                continue
+            position_counts[year] = utility.count_position(stats)
+        self.write(rendering.render_league_info(position_counts, TEMPLATE_DIR, 'league_info.html'))
+
 def make_app():
     settings = {"debug": True,
                 "static_path": os.path.join(os.path.dirname(__file__), "nbastats/static"),}
