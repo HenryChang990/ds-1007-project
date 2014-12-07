@@ -44,16 +44,44 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li><a href="/players/info">League Info<span class="sr-only">(current)</span></a></li>
-	    <li><a href="/players/current">Current Players</a></li>
-	    <li><a href="/players/historic">Historic Players</a></li>
+	    <li {% if option=='info' %}class="active"{% endif %}><a href="/players/info">League Info</a></li>
+	    <li {% if option=='current' %}class="active"{% endif %}><a href="/players/current">Current Players</a></li>
+	    <li {% if option=='historic' %}class="active"{% endif %}><a href="/players/historic">Historic Players</a></li>
 	  </ul>
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	  <div class="page-header">
-	    <h1>{{header}}</h1>
+	  <div>
+	    <ul class="nav nav-tabs">
+	      <li role="presentation" {% if position=='c' %}class="active"{% endif %}><a href="c">Center <span class="badge">{{count[0]}}</span></a></li>
+	      <li role="presentation" {% if position=='pf' %}class="active"{% endif %}><a href="pf">Power Forward <span class="badge">{{count[1]}}</span></a></li>
+	      <li role="presentation" {% if position=='sf' %}class="active"{% endif %}><a href="sf">Small Forward <span class="badge">{{count[2]}}</span></a></li>
+	      <li role="presentation" {% if position=='sg' %}class="active"{% endif %}><a href="sg">Shooting Guard <span class="badge">{{count[3]}}</span></a></li>
+	      <li role="presentation" {% if position=='pg' %}class="active"{% endif %}><a href="pg">Point Guard <span class="badge">{{count[4]}}</span></a></li>
+	    </ul>
 	  </div>
+
+	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
+	    {% for name in players[0] %}
+	    <a href="#" class="list-group-item">{{name}}</a>
+	    {% endfor %}
+	  </div>
+	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
+	    {% for name in players[1] %}
+	    <a href="#" class="list-group-item">{{name}}</a>
+	    {% endfor %}
+	  </div>
+	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
+	    {% for name in players[2] %}
+	    <a href="#" class="list-group-item">{{name}}</a>
+	    {% endfor %}
+	  </div>
+	  <div class="list-group col-sm-3 col-md-3 col-xs-6">
+	    {% for name in players[3] %}
+	    <a href="#" class="list-group-item">{{name}}</a>
+	    {% endfor %}
+	  </div>
+	  
 	  
 	</div>
 	

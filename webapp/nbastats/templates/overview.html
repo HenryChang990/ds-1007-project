@@ -10,12 +10,11 @@
     <title>NBA Stats</title>
 
     <!-- Bootstrap core CSS -->
-    {% raw %}
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
-    {% endraw %}
+
   </head>
 
   <body>
@@ -45,12 +44,12 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li><a href="/overview/{{year}}">All<span class="sr-only">(current)</span></a></li>
-	    <li><a href="/overview/{{year}}/c">Center</a></li>
-	    <li><a href="/overview/{{year}}/pf">Power Forward</a></li>
-	    <li><a href="/overview/{{year}}/sf">Small Forward</a></li>
-	    <li><a href="/overview/{{year}}/sg">Shooting Guard</a></li>
-	    <li><a href="/overview/{{year}}/pg">Point Guard</a></li>	    
+	    <li {% if position=='All Players' %}class="active"{% endif %}><a href="/overview/{{year}}">All</a></li>
+	    <li {% if position=='Center' %}class="active"{% endif %}><a href="/overview/{{year}}/c">Center</a></li>
+	    <li {% if position=='Power Forward' %}class="active"{% endif %}><a href="/overview/{{year}}/pf">Power Forward</a></li>
+	    <li {% if position=='Small Forward' %}class="active"{% endif %}><a href="/overview/{{year}}/sf">Small Forward</a></li>
+	    <li {% if position=='Shooting Guard' %}class="active"{% endif %}><a href="/overview/{{year}}/sg">Shooting Guard</a></li>
+	    <li {% if position=='Point Guard' %}class="active"{% endif %}><a href="/overview/{{year}}/pg">Point Guard</a></li>	    
 	  </ul>
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
