@@ -55,7 +55,11 @@ def merge_salaries_stats(salaries, year):
     a merged dataframe with salaries and nba stats dataset for the selected year.
     """
     salaries_year = salaries[year].dropna(subset = ['SALARY'])
-    stats_year = pd.read_csv('../data/nba_cleaned_{}.csv'.format(year-1)).set_index(['PLAYER','POS']) #load nba stats dataset and set player and position as index
-    return pd.merge(salaries_year,stats_year,right_index=True, left_index=True) #merge dataframes
+    stats_year = pd.read_csv('../data/nba_{}.csv'.format(year-1))
+    stats_year['POS'] = stats_year['POS'].apply(lambda x: x.replace(' ',''))
+    stats_year = stats_year[stats_year['POS'].isin(['SG','PF','PG','SF','C'])]
+    stats_year = stats_year.set_index(['PLAYER','POS'])
+    stats_year = stats_year.drop('TEAM',1)
+    return pd.merge(salaries_year,stats_year,right_index=True, left_index=True)
 
 
