@@ -15,5 +15,7 @@ def url_to_name(url):
         return string.capwords(url.replace('-', ' ')).replace('neal', 'Neal')
     elif url == 'darius-johnson-odom':
         return 'Darius Johnson-Odom'
+    elif url == 'marshon-brooks':
+        return 'MarShon Brooks'
     else:
         return string.capwords(url.replace('-', ' '))

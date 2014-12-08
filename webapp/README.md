@@ -9,4 +9,4 @@ Execute run.py to start local server
 
     python run.py
 
-Open [localhost:8888/](localhost:8888/) in your browser to access the web app
+Open [localhost:8080/](localhost:8080/) in your browser to access the web app
