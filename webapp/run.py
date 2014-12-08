@@ -67,7 +67,17 @@ class PlayerHandler(tornado.web.RequestHandler):
         years = stats.ix[player]['YEARS'].strip().split()
         last_year = years[-1]
         stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(last_year), index_col='PLAYER')
-        self.write(rendering.render_player(player, stats.ix[player], years, img_src, TEMPLATE_DIR, 'player.html'))
+        self.write(rendering.render_player(player, stats.ix[[player]], years, last_year, option, img_src, TEMPLATE_DIR, 'player.html'))
+
+class PlayerByYearHandler(tornado.web.RequestHandler):
+    """ """
+    def get(self, option, name, year):
+        stats = pd.read_csv('nbastats/static/data/players_{}.csv'.format(option), index_col='PLAYER')
+        player = utility.url_to_name(name)
+        img_src = stats.ix[player]['IMG']
+        years = stats.ix[player]['YEARS'].strip().split()
+        stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(year), index_col='PLAYER')
+        self.write(rendering.render_player(player, stats.ix[[player]], years, year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class TrendHandler(tornado.web.RequestHandler):
     def get(self):
@@ -109,6 +119,7 @@ def make_app():
         (r'/players/current', tornado.web.RedirectHandler, {'url': '/players/current/c'}),
         (r'/players/historic', tornado.web.RedirectHandler, {'url': '/players/historic/c'}),
         (r'/players/info', PlayersOverviewHandler),
+        (r'/players/(current|historic)/(.*)/(20[01][0-9])', PlayerByYearHandler),
         (r'/players/(current|historic)/(.*)', PlayerHandler),
         (r'/salaries/trend', TrendHandler),
         (r'/salaries/dist/(20[01][0-9])', DistributionHandler),
