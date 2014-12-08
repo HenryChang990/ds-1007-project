@@ -1,7 +1,7 @@
 import numpy as np
 from jinja2 import Environment, PackageLoader
 from . import plotting, utility
-from salaries_analysis import salaries_stats_analysis
+from salaries_analysis import salaries_stats_analysis_test
 
 PKG = 'nbastats'
 POSITIONS = {'c':'Center', 'pf':'Power Forward', 'sf':'Small Forward', 'sg':'Shooting Guard', 'pg':'Point Guard', 'all' :'All Players'}
@@ -49,6 +49,27 @@ def render_player(player, stats, years, img_src, temp_dir, temp_file):
 
 def render_trend(oa,pos,temp_dir, temp_file):
     plots = [oa.overall_salaries_trend(), pos.pos_salaries_trend()]
+    env = Environment(loader=PackageLoader(PKG, temp_dir))
+    template = env.get_template(temp_file)
+    return template.render(plots=plots)
+
+def render_distribution(oa,pos,temp_dir, temp_file):
+    plots = [oa.overall_distributions(), pos.pos_salaries_distribution()]
+    env = Environment(loader=PackageLoader(PKG, temp_dir))
+    template = env.get_template(temp_file)
+    return template.render(plots=plots)
+
+def render_top10(oa,pos,temp_dir, temp_file):
+    plots = [oa.overall_top_10_player()]
+    for p in pos:
+        plots.append(p.pos_top_10_player())
+    env = Environment(loader=PackageLoader(PKG, temp_dir))
+    template = env.get_template(temp_file)
+    return template.render(plots=plots)
+
+def render_regression(sr, temp_dir, temp_file):
+    sr.df = sr.salaries_stats_regression()
+    plots = [sr.salaries_stats_regression_plot(),sr.underpriced_player(100),sr.overpriced_player(100)]
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
     return template.render(plots=plots)

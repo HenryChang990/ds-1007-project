@@ -4,7 +4,7 @@ import signal, os
 import pandas as pd
 import numpy as np
 from nbastats import rendering, utility
-from nbastats.salaries_analysis import salaries_stats_analysis
+from nbastats.salaries_analysis import salaries_stats_analysis_test
 from nbastats.salaries_analysis import salaries_preprocessing
 
 # define some constants
@@ -71,9 +71,30 @@ class PlayerHandler(tornado.web.RequestHandler):
 
 class TrendHandler(tornado.web.RequestHandler):
     def get(self):
-        oa = overall_analysis()
-        pos = position_analysis()
+        oa = salaries_stats_analysis_test.overall_analysis()
+        pos = salaries_stats_analysis_test.position_analysis()
         self.write(rendering.render_trend(oa, pos, TEMPLATE_DIR, 'salaries_trend.html'))
+
+class DistributionHandler(tornado.web.RequestHandler):
+    def get(self, year):
+        oa = salaries_stats_analysis_test.overall_analysis(int(year))
+        pos = salaries_stats_analysis_test.position_analysis(int(year))   
+        self.write(rendering.render_distribution(oa, pos, TEMPLATE_DIR, 'salaries_distribution.html'))
+        
+class Top10Handler(tornado.web.RequestHandler):
+    def get(self, year):
+        oa = salaries_stats_analysis_test.overall_analysis(int(year))
+        positions = ['C','PF','PG','SF','SG']
+        pos = []
+        for position in positions:
+            pos.append(salaries_stats_analysis_test.position_analysis(int(year), position))
+        self.write(rendering.render_top10(oa, pos, TEMPLATE_DIR, 'salaries_top10.html'))
+        
+class RegressionHandler(tornado.web.RequestHandler):
+    def get(self,year):
+        sr = salaries_regression(year)
+        self.write(rendering.render_regression(sr, TEMPLATE_DIR, 'salaries_regression.html'))
+        
         
 def make_app():
     settings = {"debug": True,
@@ -90,6 +111,9 @@ def make_app():
         (r'/players/info', PlayersOverviewHandler),
         (r'/players/(current|historic)/(.*)', PlayerHandler),
         (r'/salaries/trend', TrendHandler),
+        (r'/salaries/dist/(20[01][0-9])', DistributionHandler),
+        (r'/salaries/top/(20[01][0-9])', Top10Handler),
+        (r'/salaries/reg/(20[01][0-9])', RegressionHandler),
     ], **settings)
 
 def on_shutdown():

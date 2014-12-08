@@ -1,0 +1,264 @@
+RK,PLAYER,POS,TEAM,SALARY
+1,Kevin Garnett,PF,Minnesota Timberwolves,25200000
+2,Shaquille O'Neal,C,Los Angeles Lakers,23571000
+3,Shawn Kemp,C,Orlando Magic,21500000
+4,Juwan Howard,PF,Denver Nuggets,20625000
+5,Scottie Pippen,SF,Portland Trail Blazers,19727000
+6,Karl Malone,PF,Utah Jazz,19250000
+7,Rasheed Wallace,PF,Portland Trail Blazers,16200000
+8,Dikembe Mutombo,C,New Jersey Nets,16105000
+9,Chris Webber,C,Sacramento Kings,14343000
+10,Damon Stoudamire,PG,Portland Trail Blazers,13500000
+11,Gary Payton,PG,Seattle SuperSonics,13080000
+12,Ray Allen,SG,Seattle SuperSonics,12375000
+13,Latrell Sprewell,SG,New York Knicks,12375000
+14,Antoine Walker,PF,Boston Celtics,12375000
+15,Stephon Marbury,PG,Phoenix Suns,12375000
+16,Tracy McGrady,SG,Orlando Magic,12072000
+17,Tim Duncan,PF,San Antonio Spurs,12072000
+18,Grant Hill,SF,Orlando Magic,12072000
+19,Reggie Miller,SG,Indiana Pacers,12046000
+20,Antonio Davis,PF,Toronto Raptors,12000000
+21,Michael Finley,SG,Dallas Mavericks,11953000
+22,Vlade Divac,C,Sacramento Kings,11248000
+23,Eddie Jones,SG,Miami Heat,11200000
+24,Brian Grant,PF,Miami Heat,11121000
+25,Allan Houston,SG,New York Knicks,11000000
+26,Tom Gugliotta,PF,Phoenix Suns,10890000
+27,Tim Thomas,PF,Milwaukee Bucks,10750000
+28,Vince Carter,SG,Toronto Raptors,10625000
+29,David Robinson,C,San Antonio Spurs,10500000
+30,Nick Van Exel,PG,Dallas Mavericks,10003000
+31,Steve Smith,SG,San Antonio Spurs,9900000
+32,Glenn Robinson,SF,Atlanta Hawks,9860000
+33,Derrick Coleman,PF,Philadelphia 76ers,9830000
+34,Theo Ratliff,C,Atlanta Hawks,9375000
+35,Jason Kidd,PG,New Jersey Nets,9260000
+36,Glen Rice,SF,Houston Rockets,9200000
+37,Kenny Anderson,PG,Seattle SuperSonics,9185000
+38,John Stockton,G,Utah Jazz,9000000
+39,Kerry Kittles,SG,New Jersey Nets,8717000
+40,Clifford Robinson,PF,Detroit Pistons,8421000
+41,Toni Kukoc,SF,Milwaukee Bucks,8050000
+42,Dale Davis,PF,Portland Trail Blazers,8000000
+43,Elden Campbell,C,Seattle SuperSonics,7975000
+44,Greg Ostertag,C,Utah Jazz,7799000
+45,Jamal Mashburn,SF,New Orleans Hornets,7750000
+46,Maurice Taylor,PF,Houston Rockets,7150000
+47,Derek Anderson,SG,Portland Trail Blazers,7145000
+48,Donyell Marshall,PF,Chicago Bulls,7140000
+49,Alan Henderson,PF,Atlanta Hawks,7091000
+50,P.J. Brown,PF,New Orleans Hornets,7044000
+51,Wesley Person,SF,Memphis Grizzlies,7000000
+52,Austin Croshere,PF,Indiana Pacers,6960000
+53,Jermaine O'Neal,C,Indiana Pacers,6950000
+54,Erick Dampier,C,Golden State Warriors,6858000
+55,Marcus Camby,C,Denver Nuggets,6750000
+56,Kelvin Cato,C,Houston Rockets,6696000
+57,Ron Mercer,SG,Indiana Pacers,6618000
+58,Tyrone Hill,PF,Philadelphia 76ers,6600000
+59,Bo Outlaw,PF,Phoenix Suns,6555000
+60,Shandon Anderson,SF,New York Knicks,6100000
+61,Michael Olowokandi,C,Los Angeles Clippers,6061000
+62,Lorenzen Wright,PF,Memphis Grizzlies,6050000
+63,Jerry Stackhouse,SF,Washington Wizards,6000000
+64,Chris Mills,SF,Golden State Warriors,6000000
+65,Steve Nash,PG,Dallas Mavericks,5750000
+66,Charlie Ward,PG,New York Knicks,5750000
+67,Eddie Robinson,SF,Chicago Bulls,5726000
+68,Doug Christie,SG,Sacramento Kings,5625000
+69,Peja Stojakovic,SF,Sacramento Kings,5625000
+70,Bob Sura,PG,Golden State Warriors,5540000
+71,Mike Bibby,PG,Sacramento Kings,5448000
+72,Alvin Williams,PG,Toronto Raptors,5350000
+73,Howard Eisley,PG,New York Knicks,5312000
+74,Robert Horry,PF,Los Angeles Lakers,5300000
+75,Jerome Williams,PF,Toronto Raptors,5250000
+76,Jason Caffey,F,Milwaukee Bucks,5250000
+77,Vitaly Potapenko,C,Seattle SuperSonics,5238000
+78,Nazr Mohammed,C,Atlanta Hawks,5130000
+79,Brevin Knight,PG,Memphis Grizzlies,5062000
+80,Brent Barry,SG,Seattle SuperSonics,5040000
+81,Eric Williams,PF,Boston Celtics,5004000
+82,Ben Wallace,PF,Detroit Pistons,5000000
+83,Calvin Booth,C,Seattle SuperSonics,4992000
+84,Anthony Mason,F,Milwaukee Bucks,4992000
+85,Ruben Patterson,PF,Portland Trail Blazers,4992000
+86,Joe Smith,PF,Minnesota Timberwolves,4991000
+87,Todd MacCulloch,C,Philadelphia 76ers,4991000
+88,Clarence Weatherspoon,PF,New York Knicks,4991000
+89,Avery Johnson,PG,Dallas Mavericks,4991000
+90,Christian Laettner,PF,Washington Wizards,4973000
+91,Danny Fortson,C,Golden State Warriors,4935000
+92,Raef LaFrentz,C,Dallas Mavericks,4926000
+93,Kurt Thomas,PF,New York Knicks,4904000
+94,Cuttino Mobley,SG,Houston Rockets,4903000
+95,Jahidi White,C,Washington Wizards,4903000
+96,Rashard Lewis,PF,Seattle SuperSonics,4903000
+97,Elton Brand,PF,Los Angeles Clippers,4895000
+98,Scot Pollard,C,Sacramento Kings,4827000
+99,Brad Miller,C,Indiana Pacers,4800000
+100,Shawn Bradley,C,Dallas Mavericks,4675000
+101,Darrell Armstrong,PG,Orlando Magic,4506000
+102,Corliss Williamson,PF,Detroit Pistons,4500000
+103,Aaron McKie,SG,Philadelphia 76ers,4500000
+104,Sam Cassell,PG,Milwaukee Bucks,4500000
+105,Antawn Jamison,PF,Golden State Warriors,4469000
+106,Adonal Foyle,C,Golden State Warriors,4400000
+107,Steve Francis,PG,Houston Rockets,4383000
+108,Mark Jackson,PG,Utah Jazz,4220000
+109,Rick Fox,SF,Los Angeles Lakers,4170000
+110,Michael Stewart,PF,Cleveland Cavaliers,4160000
+111,Eric Snow,PG,Philadelphia 76ers,4125000
+112,Kenyon Martin,PF,New Jersey Nets,4067000
+113,Ervin Johnson,C,Milwaukee Bucks,4030000
+114,Tony Battie,C,Boston Celtics,4000000
+115,Travis Knight,C,New York Knicks,4000000
+116,Kwame Brown,C,Washington Wizards,3974000
+117,Baron Davis,PG,New Orleans Hornets,3942000
+118,Zeljko Rebraca,C,Detroit Pistons,3850000
+119,Tim Hardaway,G,Indiana Pacers,3780000
+120,Tracy Murray,SF,Los Angeles Lakers,3740000
+121,Robert Traylor,PF,New Orleans Hornets,3726000
+122,Stromile Swift,PF,Memphis Grizzlies,3656000
+123,Anthony Carter,PG,Miami Heat,3656000
+124,David Wesley,SG,New Orleans Hornets,3600000
+125,Chucky Atkins,PG,Detroit Pistons,3600000
+126,Moochie Norris,PG,Houston Rockets,3600000
+127,Marc Jackson,PF,Minnesota Timberwolves,3575000
+128,Lamar Odom,PF,Los Angeles Clippers,3557000
+129,Jason Williams,PG,Memphis Grizzlies,3425000
+130,Antonio Daniels,PG,Portland Trail Blazers,3375000
+131,LaPhonso Ellis,F,Miami Heat,3300000
+132,Lawrence Funderburke,PF,Sacramento Kings,3300000
+133,Darius Miles,SF,Cleveland Cavaliers,3267000
+134,Andrew DeClercq,C,Orlando Magic,3263000
+135,Jonathan Bender,SF,Indiana Pacers,3226000
+136,Anthony Peeler,SG,Minnesota Timberwolves,3220000
+137,Pau Gasol,PF,Memphis Grizzlies,3194000
+138,Jon Barry,SG,Detroit Pistons,3175000
+139,Larry Hughes,SG,Washington Wizards,3159000
+140,Evan Eschmeyer,C,Dallas Mavericks,3104000
+141,Derek Fisher,PG,Los Angeles Lakers,3000000
+142,Lindsey Hunter,SG,Toronto Raptors,3000000
+143,Chris Whitney,PG,Orlando Magic,2962000
+144,Marcus Fizer,F,Chicago Bulls,2946000
+145,Wally Szczerbiak,SG,Minnesota Timberwolves,2933000
+146,Dirk Nowitzki,PF,Dallas Mavericks,2923000
+147,Mikki Moore,C,Boston Celtics,2813000
+148,Paul Pierce,SF,Boston Celtics,2793000
+149,Bonzi Wells,SG,Portland Trail Blazers,2777000
+150,Matt Maloney,G,Atlanta Hawks,2775000
+151,Michael Doleac,C,New York Knicks,2753000
+152,Chris Crawford,SF,Atlanta Hawks,2750000
+153,Keon Clark,PF,Sacramento Kings,2726000
+154,Bimbo Coles,PG,Cleveland Cavaliers,2700000
+155,Randy Brown,G,Phoenix Suns,2700000
+156,Othella Harrington,PF,New York Knicks,2700000
+157,Bobby Jackson,PG,Sacramento Kings,2700000
+158,Michael Dickerson,G,Memphis Grizzlies,2699000
+159,Richard Hamilton,SG,Detroit Pistons,2681000
+160,Mike Miller,SF,Memphis Grizzlies,2668000
+161,Matt Harpring,SF,Utah Jazz,2667000
+162,Horace Grant,C,Orlando Magic,2662000
+163,Sean Rooks,C,Los Angeles Clippers,2640000
+164,Lucious Harris,SG,New Jersey Nets,2640000
+165,Hubert Davis,SG,Detroit Pistons,2631000
+166,Steve Kerr,G,San Antonio Spurs,2625000
+167,Michael Curry,SF,Detroit Pistons,2600000
+168,George Lynch,SF,New Orleans Hornets,2600000
+169,Andre Miller,PG,Los Angeles Clippers,2460000
+170,Rasho Nesterovic,C,Minnesota Timberwolves,2436000
+171,Stacey Augmon,SF,New Orleans Hornets,2400000
+172,John Amaechi,PF,Utah Jazz,2393000
+173,Shane Battier,SF,Memphis Grizzlies,2368000
+174,Shawn Marion,SF,Phoenix Suns,2265000
+175,Pat Garrity,PF,Orlando Magic,2238000
+176,Chris Mihm,C,Cleveland Cavaliers,2222000
+177,Eddie Griffin,PF,Houston Rockets,2162000
+178,Ricky Davis,SG,Cleveland Cavaliers,2156000
+179,Jason Terry,SG,Atlanta Hawks,2153000
+180,Brian Skinner,PF,Philadelphia 76ers,2148000
+181,Al Harrington,PF,Indiana Pacers,2110000
+182,Corey Maggette,SF,Los Angeles Clippers,2069000
+183,Jamal Crawford,SG,Chicago Bulls,2026000
+184,Shammond Williams,PG,Denver Nuggets,1987000
+185,DeSagana Diop,C,Cleveland Cavaliers,1980000
+186,Metta World Peace,SF,Indiana Pacers,1904000
+187,Tyronn Lue,PG,Washington Wizards,1885000
+188,Joel Przybilla,C,Milwaukee Bucks,1862000
+189,Rodney White,SF,Denver Nuggets,1821000
+190,Keyon Dooling,PG,Los Angeles Clippers,1769000
+191,Joe Johnson,SF,Phoenix Suns,1729000
+192,James Posey,SF,Houston Rockets,1723000
+193,Jerome Moiso,C,New Orleans Hornets,1681000
+194,Danny Manning,F,Detroit Pistons,1650000
+195,Kedrick Brown,SG,Boston Celtics,1643000
+196,Tony Massenburg,PF,Utah Jazz,1636000
+197,Etan Thomas,C,Washington Wizards,1605000
+198,Dion Glover,SG,Atlanta Hawks,1584000
+199,Jeff Foster,PF,Indiana Pacers,1571000
+200,Vladimir Radmanovic,SF,Seattle SuperSonics,1561000
+201,Kenny Thomas,PF,Philadelphia 76ers,1557000
+202,Devean George,SF,Los Angeles Lakers,1542000
+203,Samaki Walker,PF,Los Angeles Lakers,1540000
+204,Courtney Alexander,SG,New Orleans Hornets,1524000
+205,Richard Jefferson,SF,New Jersey Nets,1482000
+206,Mateen Cleaves,PG,Sacramento Kings,1441000
+207,Jumaine Jones,SF,Cleveland Cavaliers,1419000
+208,Scott Padgett,PF,Utah Jazz,1410000
+209,Troy Murphy,PF,Golden State Warriors,1409000
+210,Brian Shaw,G,Los Angeles Lakers,1400000
+211,Corie Blount,PF,Chicago Bulls,1400000
+212,Monty Williams,SF,Philadelphia 76ers,1400000
+213,Jason Collier,C,Houston Rockets,1376000
+214,Hedo Turkoglu,SF,Sacramento Kings,1300000
+215,Bryce Drew,PG,New Orleans Hornets,1300000
+216,Kirk Haston,F,New Orleans Hornets,1271000
+217,Desmond Mason,SF,Seattle SuperSonics,1235000
+218,Michael Bradley,PF,Toronto Raptors,1208000
+219,Quentin Richardson,SF,Los Angeles Clippers,1174000
+220,Jason Collins,C,New Jersey Nets,1147000
+221,Jamaal Magloire,C,New Orleans Hornets,1126000
+222,Don Reid,F,Detroit Pistons,1100000
+223,Danny Ferry,F,San Antonio Spurs,1100000
+224,Mark Bryant,F,Philadelphia 76ers,1100000
+225,Zach Randolph,PF,Portland Trail Blazers,1096000
+226,Speedy Claxton,PG,San Antonio Spurs,1081000
+227,Morris Peterson,SG,Toronto Raptors,1033000
+228,Michael Jordan,G,Washington Wizards,1030000
+229,Joseph Forte,G,Seattle SuperSonics,1009000
+230,Kevin Willis,C,San Antonio Spurs,1000000
+231,Donnell Harvey,PF,Denver Nuggets,992000
+232,Jeryl Sasser,G,Orlando Magic,969000
+233,DeShawn Stevenson,SG,Utah Jazz,956000
+234,Brandon Armstrong,SG,New Jersey Nets,930000
+235,Dalibor Bagaric,C,Chicago Bulls,914000
+236,Andrei Kirilenko,SF,Utah Jazz,893000
+237,Jake Tsakalidis,C,Phoenix Suns,877000
+238,Mamadou N'diaye,C,Toronto Raptors,852000
+239,Bruce Bowen,SF,San Antonio Spurs,824000
+240,Cherokee Parks,PF,Los Angeles Clippers,824000
+241,Emanual Davis,G,Atlanta Hawks,824000
+242,Mark Madsen,PF,Los Angeles Lakers,817000
+243,Jamaal Tinsley,PG,Indiana Pacers,805000
+244,Primoz Brezec,C,Indiana Pacers,805000
+245,Tony Parker,PG,San Antonio Spurs,800000
+246,Milt Palacio,PG,Cleveland Cavaliers,749000
+247,Gerald Wallace,SF,Sacramento Kings,714000
+248,Jacque Vaughn,PG,Orlando Magic,700000
+249,Earl Boykins,PG,Golden State Warriors,700000
+250,Vladimir Stepania,C,Miami Heat,637000
+251,Mark Blount,C,Denver Nuggets,637000
+252,Amal McCaskill,C,Atlanta Hawks,612000
+253,Charles Smith,SG,Portland Trail Blazers,612000
+254,Jake Voskuhl,C,Phoenix Suns,587000
+255,Stephen Jackson,SF,San Antonio Spurs,587000
+256,Ryan Bowen,SF,Denver Nuggets,587000
+257,Olumide Oyedeji,C,Orlando Magic,587000
+258,Predrag Drobnjak,C,Seattle SuperSonics,526000
+259,Trenton Hassell,SF,Chicago Bulls,512000
+260,Damone Brown,PF,Toronto Raptors,512000
+261,Gilbert Arenas,PG,Golden State Warriors,512000
+262,Jeff Trepagnier,SG,Denver Nuggets,512000
+263,Brian Scalabrine,PF,New Jersey Nets,512000
