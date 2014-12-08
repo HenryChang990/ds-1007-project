@@ -1,6 +1,7 @@
 import numpy as np
 from jinja2 import Environment, PackageLoader
 from . import plotting, utility
+from salaries_analysis import salaries_stats_analysis
 
 PKG = 'nbastats'
 POSITIONS = {'c':'Center', 'pf':'Power Forward', 'sf':'Small Forward', 'sg':'Shooting Guard', 'pg':'Point Guard', 'all' :'All Players'}
@@ -45,4 +46,10 @@ def render_player(player, stats, years, img_src, temp_dir, temp_file):
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
     return template.render(name=player, img_src=img_src)
+
+def render_trend(oa,pos,temp_dir, temp_file):
+    plots = [oa.overall_salaries_trend(), pos.pos_salaries_trend()]
+    env = Environment(loader=PackageLoader(PKG, temp_dir))
+    template = env.get_template(temp_file)
+    return template.render(plots=plots)
     

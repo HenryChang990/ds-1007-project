@@ -4,6 +4,8 @@ import signal, os
 import pandas as pd
 import numpy as np
 from nbastats import rendering, utility
+from nbastats.salaries_analysis import salaries_stats_analysis
+from nbastats.salaries_analysis import salaries_preprocessing
 
 # define some constants
 YEARS = xrange(2000, 2015)
@@ -66,6 +68,12 @@ class PlayerHandler(tornado.web.RequestHandler):
         last_year = years[-1]
         stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(last_year), index_col='PLAYER')
         self.write(rendering.render_player(player, stats.ix[player], years, img_src, TEMPLATE_DIR, 'player.html'))
+
+class TrendHandler(tornado.web.RequestHandler):
+    def get(self):
+        oa = overall_analysis()
+        pos = position_analysis()
+        self.write(rendering.render_trend(oa, pos, TEMPLATE_DIR, 'salaries_trend.html'))
         
 def make_app():
     settings = {"debug": True,
