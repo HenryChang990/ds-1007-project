@@ -89,6 +89,7 @@ def make_app():
         (r'/players/historic', tornado.web.RedirectHandler, {'url': '/players/historic/c'}),
         (r'/players/info', PlayersOverviewHandler),
         (r'/players/(current|historic)/(.*)', PlayerHandler),
+        (r'/salaries/trend', TrendHandler),
     ], **settings)
 
 def on_shutdown():
