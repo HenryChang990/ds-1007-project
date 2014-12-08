@@ -44,7 +44,7 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li class="active"><a href="/players/info">League Info</a></li>
+	    <li><a href="/players/info">League Info</a></li>
 	    <li><a href="/players/current">Current Players</a></li>
 	    <li><a href="/players/historic">Historic Players</a></li>
 	  </ul>
@@ -57,13 +57,89 @@
 	      <div class="thumbnail">
 		<img src="{{img_src}}" alt="{{name}}">
 		<div class="caption">
-		  <h3>{{name}}</h3>
-		  <p>...</p>
+		  <h3>{{name}} <small>{{stats.iloc[0].POS}}</small></h3>
+		  <h5>{{season}} Season</h5>
 		</div>
-	      </div>
+		
+		<table class="table">
+		  <tr>
+		    {% for field in fields %}
+		    <th>{{field}}</th>
+		    {% endfor %}
+		  </tr>
+		  <tr>
+		    {% for value in values %}
+		    <td>{{value}}</td>
+		    {% endfor %}
+		  </tr>
+		</table>
+	      </div> <!-- end thumbnail -->
 	    </div>
 	  </div>
 	  
+	  <div class="dropdown" align="right">
+	    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	      Year
+	      <span class="caret"></span>
+	    </button>
+	    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+	      {% for year in years %}
+	      <li role="presentation"><a role="menuitem" tabindex="-1" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{year}}">{{year}}</a></li>
+	      {% endfor %}
+	    </ul>
+	  </div>  <!-- end of dropdown button -->
+
+	  <div class="panel panel-default">
+	    <h2 class="panel-title panel-heading">Stats <small>{{season}}</small></h2>
+	    
+	    
+	    <div class="table-responsive">
+	      <table class="table table-striped">
+		<thead>
+		  <tr>
+		    <th>PLAYER</th>
+		    <th>POS</th>
+		    <th>TEAM</th>
+		    <th>GP</th>
+		    <th>GS</th>
+		    <th>MIN</th>
+		    <th>PTS</th>
+		    <th>REB</th>
+		    <th>AST</th>
+		    <th>STL</th>
+		    <th>BLK</th>
+		    <th>TO</th>
+		    <th>PF</th>
+		    <th>FG%</th>
+		    <th>3P%</th>
+		    <th>FT%</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for i in rows %}
+		  <tr>
+		    <td>{{name}}</td>
+		    <td>{{stats.iloc[i].POS}}</td>
+		    <td>{{stats.iloc[i].TEAM}}</td>
+		    <td>{{stats.iloc[i].GP}}</td>
+		    <td>{{stats.iloc[i].GS}}</td>
+		    <td>{{stats.iloc[i].MIN}}</td>
+		    <td>{{stats.iloc[i].PPG}}</td>
+		    <td>{{stats.iloc[i].RPG}}</td>
+		    <td>{{stats.iloc[i].APG}}</td>
+		    <td>{{stats.iloc[i].SPG}}</td>
+		    <td>{{stats.iloc[i].BPG}}</td>
+		    <td>{{stats.iloc[i].TPG}}</td>
+		    <td>{{stats.iloc[i].FPG}}</td>
+		    <td>{{stats.iloc[i]['FG%']}}</td>
+		    <td>{{stats.iloc[i]['3P%']}}</td>
+		    <td>{{stats.iloc[i]['FT%']}}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	      </table>
+	    </div>
+	  </div>
 	  
 	</div>
 	

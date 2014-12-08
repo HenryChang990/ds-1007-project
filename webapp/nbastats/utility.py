@@ -15,7 +15,31 @@ def url_to_name(url):
         return string.capwords(url.replace('-', ' ')).replace('neal', 'Neal')
     elif url == 'darius-johnson-odom':
         return 'Darius Johnson-Odom'
-    elif url == 'marshon-brooks':
-        return 'MarShon Brooks'
+    elif 'deandre' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Deandre', 'DeAndre')
+    elif 'marshon' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Marshon', 'MarShon')
+    elif 'mcgrady' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Mcgrady', 'McGrady')
+    elif 'dejuan' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Dejuan', 'DeJuan')
+    elif 'demarcus' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Demarcus', 'DeMarcus')
+    elif 'lamarcus' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Lamarcus', 'LaMarcus')
+    elif 'mcroberts' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Mcroberts', 'McRoberts')
+    elif "o'quinn" in url:
+        return string.capwords(url.replace('-', ' ')).replace('quinn', 'Quinn')
+    elif "e'twaun" in url:
+        return string.capwords(url.replace('-', ' ')).replace('twaun', 'Twaun')
+    elif url == 'lebron-james':
+        return 'LeBron James'
+    elif url == 'demar-derozan':
+        return 'DeMar DeRozan'
+    elif url == 'john-lucas-iii':
+        return 'John Lucas III'
+    elif url == 'al-farouq-aminu':
+        return 'Al-Farouq Aminu'
     else:
         return string.capwords(url.replace('-', ' '))
