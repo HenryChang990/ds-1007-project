@@ -67,7 +67,7 @@ class PlayerHandler(tornado.web.RequestHandler):
         years = stats.ix[player]['YEARS'].strip().split()
         last_year = years[-1]
         stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(last_year), index_col='PLAYER')
-        self.write(rendering.render_player(player, stats.ix[[player]], years, last_year, option, img_src, TEMPLATE_DIR, 'player.html'))
+        self.write(rendering.render_player(player, stats, years, last_year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class PlayerByYearHandler(tornado.web.RequestHandler):
     """ """
@@ -77,7 +77,7 @@ class PlayerByYearHandler(tornado.web.RequestHandler):
         img_src = stats.ix[player]['IMG']
         years = stats.ix[player]['YEARS'].strip().split()
         stats = pd.read_csv('nbastats/static/data/stats_{}.csv'.format(year), index_col='PLAYER')
-        self.write(rendering.render_player(player, stats.ix[[player]], years, year, option, img_src, TEMPLATE_DIR, 'player.html'))
+        self.write(rendering.render_player(player, stats, years, year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class TrendHandler(tornado.web.RequestHandler):
     def get(self):

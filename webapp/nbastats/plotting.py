@@ -40,3 +40,35 @@ def trend_plot(data):
     plt.close()
     return html
     
+def radar_plot(data, fig_name, pos):
+    """ plot radar chart for specified player based on 6 predefined stats """
+
+    fig = plt.figure(figsize=(3, 3))
+    titles = ['AST', 'PTS', 'FG%', 'BLK', 'REB', 'STL']
+    n = 6
+
+    # Set angles
+    angles = np.arange(30, 30+360, 360.0/n)
+    rect = [0.1, 0.1, 0.9, 0.9]
+
+    axes = [fig.add_axes(rect, projection="polar")]
+    ax = axes[0]
+    ax.set_thetagrids(angles, labels=titles, fontsize=10)
+    for ax in axes[0:]:
+        ax.patch.set_visible(False)
+        ax.grid("on")
+        ax.xaxis.set_visible(True)
+    for ax, angle in zip(axes, angles):
+        ax.set_rgrids(range(1, 6), angle=angle)
+        ax.spines["polar"].set_visible(True)
+        ax.set_ylim(0, 1)
+        
+    stats = np.append(data, data[0])
+    angles = np.append(angles, angles[0])
+    angles = np.deg2rad(angles)
+    colorbook = dict(C='skyblue', PF='yellowgreen', SF='lightcoral', SG='mediumpurple', PG='gold')
+    color = colorbook[pos]
+    ax.plot(angles, stats, "-", lw=4, color=color, alpha=0.55, label="name")
+    ax.fill(angles, stats, facecolor=color, alpha=0.25)
+    plt.savefig('nbastats/static/img/{}'.format(fig_name), bbox_inches='tight')
+    plt.close()

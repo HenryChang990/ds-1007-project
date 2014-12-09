@@ -43,19 +43,30 @@ def render_league_info(counts, temp_dir, temp_file):
 
 def render_player(player, stats, years, year, option, img_src, temp_dir, temp_file):
     """ render page for individual player """
-    n = len(stats)
-    pos = stats.iloc[0]['POS']
+    player_stats = stats.ix[[player]]
+    n = len(player_stats)
+
+    # get position, display 3 stats based on position
+    pos = player_stats.iloc[0]['POS']
     if pos in set(['PG', 'SG', 'SF']):
         fields = ['PTS', 'AST', 'REB']
-        values = stats.iloc[0][['PPG', 'APG', 'RPG']]
+        values = player_stats.iloc[0][['PPG', 'APG', 'RPG']]
     else:
         fields = ['PTS', 'REB', 'BLK']
-        values = stats.iloc[0][['PPG', 'RPG', 'BPG']]
-    season = str(int(year)-1) + '-' + year[-2:]
+        values = player_stats.iloc[0][['PPG', 'RPG', 'BPG']]
         
+    season = str(int(year)-1) + '-' + year[-2:]    # construct season string
+
+    # prepare data for radar chart
+    stats = stats[['APG', 'PPG', 'FG%', 'BPG', 'RPG', 'SPG']]
+    r_data = (player_stats.iloc[0][['APG', 'PPG', 'FG%', 'BPG', 'RPG', 'SPG']] - stats.min())/(stats.max()-stats.min())
+    r_data = np.sqrt(list(r_data))
+    fig_name = '{}_{}.png'.format(utility.name_to_url(player), year)
+    plotting.radar_plot(r_data, fig_name, pos)
+    
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
-    return template.render(name=player, stats=stats, years=years, year=year, option=option, season=season, fields=fields, values=values, rows=xrange(n), img_src=img_src)
+    return template.render(name=player, stats=player_stats, years=years, year=year, option=option, season=season, fields=fields, values=values, rows=xrange(n), fig=fig_name, img_src=img_src)
 
 def render_trend(oa,pos,temp_dir, temp_file):
     plots = [oa.overall_salaries_trend(), pos.pos_salaries_trend()]

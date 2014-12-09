@@ -34,7 +34,7 @@
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/overview/2014">Overview</a></li>
 	    <li><a href="/players/info">Players</a></li>
-	    <li><a href="#">Salaries</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
 	  </ul>
 	</div>
       </div>
@@ -51,9 +51,15 @@
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+	  
 	  <div class="row">
-	    <div class="col-sm-6 col-md-4">
+	    <div class="btn-group col-sm-12" role="group" aria-label="...">
+	      {% for year in years %}
+	      <a class="btn btn-default" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{year}}">{{year}}</a>
+	      {% endfor %}
+	    </div>
+
+	    <div class="col-sm-6">
 	      <div class="thumbnail">
 		<img src="{{img_src}}" alt="{{name}}">
 		<div class="caption">
@@ -75,24 +81,20 @@
 		</table>
 	      </div> <!-- end thumbnail -->
 	    </div>
+
+	    <div class="col-sm-6">
+	      <div class="thumbnail" align="right">
+		<img src="/static/img/{{fig}}" alt="Player Ability Chart">
+	      </div>
+	    </div>
+	      
 	  </div>
-	  
-	  <div class="dropdown" align="right">
-	    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-	      Year
-	      <span class="caret"></span>
-	    </button>
-	    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-	      {% for year in years %}
-	      <li role="presentation"><a role="menuitem" tabindex="-1" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{year}}">{{year}}</a></li>
-	      {% endfor %}
-	    </ul>
-	  </div>  <!-- end of dropdown button -->
 
 	  <div class="panel panel-default">
-	    <h2 class="panel-title panel-heading">Stats <small>{{season}}</small></h2>
-	    
-	    
+	    <div class="panel-heading">
+	      <h2 class="panel-title">Stats <small>{{season}}</small></h2>
+	    </div>
+
 	    <div class="table-responsive">
 	      <table class="table table-striped">
 		<thead>
