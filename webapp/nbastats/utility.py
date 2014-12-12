@@ -17,6 +17,10 @@ def url_to_name(url):
         return 'Darius Johnson-Odom'
     elif 'deandre' in url:
         return string.capwords(url.replace('-', ' ')).replace('Deandre', 'DeAndre')
+    elif 'desagana' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Desagana', 'DeSagana')
+    elif 'deshawn' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Deshawn', 'DeShawn')
     elif 'marshon' in url:
         return string.capwords(url.replace('-', ' ')).replace('Marshon', 'MarShon')
     elif 'mcgrady' in url:
@@ -27,12 +31,20 @@ def url_to_name(url):
         return string.capwords(url.replace('-', ' ')).replace('Demarcus', 'DeMarcus')
     elif 'lamarcus' in url:
         return string.capwords(url.replace('-', ' ')).replace('Lamarcus', 'LaMarcus')
+    elif 'lafrentz' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Lafrentz', 'LaFrentz')
     elif 'mcroberts' in url:
         return string.capwords(url.replace('-', ' ')).replace('Mcroberts', 'McRoberts')
+    elif 'mcdyess' in url:
+        return string.capwords(url.replace('-', ' ')).replace('Mcdyess', 'McDyess')
     elif "o'quinn" in url:
         return string.capwords(url.replace('-', ' ')).replace('quinn', 'Quinn')
     elif "e'twaun" in url:
         return string.capwords(url.replace('-', ' ')).replace('twaun', 'Twaun')
+    elif "-a-" in url:
+        return string.capwords(url.replace('-', ' ')).replace('A', 'a')
+    elif "kidd-gilchrist" in url:
+        return string.capwords(url.replace('-', ' ')).replace('Kidd Gilchrist', 'Kidd-Gilchrist')
     elif url == 'lebron-james':
         return 'LeBron James'
     elif url == 'demar-derozan':

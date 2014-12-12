@@ -54,8 +54,8 @@
 	  
 	  <div class="row">
 	    <div class="btn-group col-sm-12" role="group" aria-label="...">
-	      {% for year in years %}
-	      <a class="btn btn-default" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{year}}">{{year}}</a>
+	      {% for y in years %}
+	      <a class="btn btn-default {% if y==year %}active{% endif %}" href="/players/{{option}}/{{name|replace(' ', '-')|lower}}/{{y}}">{{y}}</a>
 	      {% endfor %}
 	    </div>
 

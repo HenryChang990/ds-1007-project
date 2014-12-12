@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import mpld3
+import os
 
 def hist_plot(data):
     """ plot histogram from data and return html raw code """
@@ -70,5 +71,6 @@ def radar_plot(data, fig_name, pos):
     color = colorbook[pos]
     ax.plot(angles, stats, "-", lw=4, color=color, alpha=0.55, label="name")
     ax.fill(angles, stats, facecolor=color, alpha=0.25)
-    plt.savefig('nbastats/static/img/{}'.format(fig_name), bbox_inches='tight')
+    fig_path = os.path.join(os.path.dirname(__file__), "static/img/{}".format(fig_name))
+    plt.savefig(fig_path, bbox_inches='tight')
     plt.close()
