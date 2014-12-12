@@ -128,6 +128,7 @@ def make_app():
         (r'/salaries/dist/(20[01][0-9])', DistributionHandler),
         (r'/salaries/top/(20[01][0-9])', Top10Handler),
         (r'/salaries/reg/(20[01][0-9])', RegressionHandler),
+        (r'/.*', tornado.web.RedirectHandler, {'url': '/overview/2014'}),
     ], **settings)
 
 def on_shutdown():
