@@ -1,4 +1,4 @@
-import tornado.ioloop 
+import tornado.ioloop
 import tornado.web
 import signal, os
 import pandas as pd
@@ -6,6 +6,7 @@ import numpy as np
 from nbastats import rendering, utility
 from nbastats.salaries_analysis import salaries_stats_analysis_test
 from nbastats.salaries_analysis import salaries_preprocessing
+from nbastats.salaries_analysis import regression_test
 
 # define some constants
 YEARS = xrange(2000, 2015)
@@ -41,9 +42,9 @@ class PlayersListHandler(tornado.web.RequestHandler):
             players = pd.read_csv('nbastats/static/data/players_{}.csv'.format(option))
         except IOError:
             raise tornado.web.HTTPError(500)
-        
+
         self.write(rendering.render_players(players, position, option, TEMPLATE_DIR, 'players_index.html'))
-        
+
 class PlayersOverviewHandler(tornado.web.RequestHandler):
     """ """
     def get(self):
@@ -88,24 +89,15 @@ class TrendHandler(tornado.web.RequestHandler):
 class DistributionHandler(tornado.web.RequestHandler):
     def get(self, year):
         oa = salaries_stats_analysis_test.overall_analysis(int(year))
-        pos = salaries_stats_analysis_test.position_analysis(int(year))   
+        pos = salaries_stats_analysis_test.position_analysis(int(year))
         self.write(rendering.render_distribution(oa, pos, TEMPLATE_DIR, 'salaries_distribution.html'))
-        
-class Top10Handler(tornado.web.RequestHandler):
-    def get(self, year):
-        oa = salaries_stats_analysis_test.overall_analysis(int(year))
-        positions = ['C','PF','PG','SF','SG']
-        pos = []
-        for position in positions:
-            pos.append(salaries_stats_analysis_test.position_analysis(int(year), position))
-        self.write(rendering.render_top10(oa, pos, TEMPLATE_DIR, 'salaries_top10.html'))
-        
+
 class RegressionHandler(tornado.web.RequestHandler):
     def get(self,year):
-        sr = salaries_regression(year)
+        sr = regression_test.salaries_regression(int(year))
         self.write(rendering.render_regression(sr, TEMPLATE_DIR, 'salaries_regression.html'))
-        
-        
+
+
 def make_app():
     settings = {"debug": True,
                 "static_path": os.path.join(os.path.dirname(__file__), "nbastats/static"),}
@@ -123,7 +115,6 @@ def make_app():
         (r'/players/(current|historic)/(.*)', PlayerHandler),
         (r'/salaries/trend', TrendHandler),
         (r'/salaries/dist/(20[01][0-9])', DistributionHandler),
-        (r'/salaries/top/(20[01][0-9])', Top10Handler),
         (r'/salaries/reg/(20[01][0-9])', RegressionHandler),
     ], **settings)
 

@@ -34,7 +34,7 @@
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/overview/2014">Overview</a></li>
 	    <li><a href="/players/info">Players</a></li>
-	    <li><a href="#">Salaries</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
 	  </ul>
 	</div>
       </div>
@@ -44,9 +44,9 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li class="active"><a href="/players/info">League Info</a></li>
-	    <li><a href="/players/current">Current Players</a></li>
-	    <li><a href="/players/historic">Historic Players</a></li>
+	    <li class="active"><a href="/salaries/trend">Salaries Trend</a></li>
+	    <li><a href="/salaries/dist/2014">Salaries Distribution</a></li>
+	    <li><a href="/salaries/reg/2014">Regression Analysis</a></li>
 	  </ul>
 	</div>
 	
@@ -55,7 +55,7 @@
 	  <div class="col-md-12 col-sm-12 col-xs-10">
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Percentage of Players by Position <small>2014</small></h3>
+		<h3 class="panel-title">Salaries & NBA Stats Regression Results <small>2014</small></h3>
 	      </div>
 	      <div class="panel-body">
 		{{plots[0]}}
@@ -64,77 +64,27 @@
 	  </div>
 
 	  <div class="col-md-12 col-sm-12 col-xs-10">
-	    <div class="panel panel-default">
+	    <div class="panel panel-default no-y-axis">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
+		<h3 class="panel-title">Top 10 Underpriced Players <small>2000</small></h3>
 	      </div>
 	      <div class="panel-body">
 		{{plots[1]}}
 	      </div>
 	    </div>
 	  </div>
-
+	  
           <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default">
+            <div class="panel panel-default no-y-axis">
               <div class="panel-heading">
-                <h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
+                <h3 class="panel-title">Top 10 Overpriced Players <small>2000</small></h3>
               </div>
               <div class="panel-body">
                 {{plots[2]}}
               </div>
             </div>
           </div>
-
-          <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
-              </div>
-              <div class="panel-body">
-                {{plots[3]}}
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
-              </div>
-              <div class="panel-body">
-                {{plots[4]}}
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
-              </div>
-              <div class="panel-body">
-                {{plots[5]}}
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
-              </div>
-              <div class="panel-body">
-                {{plots[6]}}
-              </div>
-            </div>
-          </div>
-
-	  <div class="col-md-8 col-sm-8 col-xs-12">
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<h3 class="panel-title">Number of Players in Each Position by Season <small>2000-2014</small></h3>
-	      </div>
-	      <div class="panel-body">
+         
 <!-- todo-->
 	      </div>
 	    </div>

@@ -34,7 +34,7 @@
 	  <ul class="nav navbar-nav navbar-right">
 	    <li><a href="/overview/2014">Overview</a></li>
 	    <li><a href="/players/info">Players</a></li>
-	    <li><a href="#">Salaries</a></li>
+	    <li><a href="/salaries/trend">Salaries</a></li>
 	  </ul>
 	</div>
       </div>
@@ -44,18 +44,49 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li class="active"><a href="/players/info">League Info</a></li>
-	    <li><a href="/players/current">Current Players</a></li>
-	    <li><a href="/players/historic">Historic Players</a></li>
+	    <li class="active"><a href="/salaries/trend">Salaries Trend</a></li>
+	    <li><a href="/salaries/dist/2014">Salaries Distribution</a></li>
+	    <li><a href="/salaries/reg/2014">Regression Analysis</a></li>
 	  </ul>
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
+        <div class="panel panel-default">
+            <h2 class="panel-title panel-heading">Salaries Distribution</h2>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Statistics</th>
+                    <th>League</th>
+                    <th>Center</th>
+                    <th>Power Forward</th>
+                    <th>Small Forward</th>
+                    <th>Small Guard</th>
+                    <th>Power Guard</th>
+                  <tr>
+                </thead>
+                <tbody>    
+                   {% for stat in table.index %}
+                   <tr>
+                    <td>{{stat}}</td>
+                    <td>{{table.ix[stat].League}}</td>
+                    <td>{{table.ix[stat].C}}</td>
+                    <td>{{table.ix[stat].PF}}</td>
+                    <td>{{table.ix[stat].SF}}</td>
+                    <td>{{table.ix[stat].SG}}</td>
+                    <td>{{table.ix[stat].PG}}</td>
+                  </tr>
+                  {% endfor %}
+                 </tbody>
+              </table>
+            </div>
+          </div>
 	  <div class="col-md-12 col-sm-12 col-xs-10">
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Percentage of Players by Position <small>2014</small></h3>
+		<h3 class="panel-title">Salaries Distribution in the League <small>2014</small></h3>
 	      </div>
 	      <div class="panel-body">
 		{{plots[0]}}
@@ -64,22 +95,26 @@
 	  </div>
 
 	  <div class="col-md-12 col-sm-12 col-xs-10">
-	    <div class="panel panel-default">
+	    <div class="panel panel-default no-x-axis">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Percentage of Players by Position <small>2000</small></h3>
+		<h3 class="panel-title">Salaries Distribution by Position <small>2000</small></h3>
 	      </div>
 	      <div class="panel-body">
-		{{plots[1]}}
-	      </div>
+	        {{plots[1]}}
+              </div>
 	    </div>
 	  </div>
 
-	  <div class="col-md-8 col-sm-8 col-xs-12">
-	    <div class="panel panel-default">
-	      <div class="panel-heading">
-		<h3 class="panel-title">Number of Players in Each Position by Season <small>2000-2014</small></h3>
-	      </div>
-	      <div class="panel-body">
+          <div class="col-md-12 col-sm-12 col-xs-10">
+            <div class="panel panel-default no-y-axis">
+              <div class="panel-heading">
+                <h3 class="panel-title">Salaries Distribution by Position <small>2000</small></h3>
+              </div>
+              <div class="panel-body"> 
+                {{plots[2]}}
+              </div>
+            </div>
+          </div>          
 <!-- todo-->
 	      </div>
 	    </div>

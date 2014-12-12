@@ -1,7 +1,9 @@
 import numpy as np
+import pandas as pd
 from jinja2 import Environment, PackageLoader
 from . import plotting, utility
 from salaries_analysis import salaries_stats_analysis_test
+from salaries_analysis import regression_test
 
 PKG = 'nbastats'
 POSITIONS = {'c':'Center', 'pf':'Power Forward', 'sf':'Small Forward', 'sg':'Shooting Guard', 'pg':'Point Guard', 'all' :'All Players'}
@@ -69,24 +71,23 @@ def render_player(player, stats, years, year, option, img_src, temp_dir, temp_fi
     return template.render(name=player, stats=player_stats, years=years, year=year, option=option, season=season, fields=fields, values=values, rows=xrange(n), fig=fig_name, img_src=img_src)
 
 def render_trend(oa,pos,temp_dir, temp_file):
-    plots = [oa.overall_salaries_trend(), pos.pos_salaries_trend()]
+    oa_plot, oa_table = oa.overall_salaries_trend()
+    pos_plot = pos.pos_salaries_trend()
+    plots = [oa_plot, pos_plot]
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
-    return template.render(plots=plots)
+    return template.render(plots=plots, table=oa_table)
 
 def render_distribution(oa,pos,temp_dir, temp_file):
-    plots = [oa.overall_distributions(), pos.pos_salaries_distribution()]
+    #fig_name = 'pos_dist_{}.png'.format(pos.year)
+    oa_plot, oa_table = oa.overall_distributions()
+    pos_plot, pos_table = pos.pos_salaries_distribution()
+    top_10_plot = oa.overall_top_10_player()
+    dist_table = pd.merge(oa_table, pos_table, left_index=True, right_index=True)
+    plots = [oa_plot,pos_plot,top_10_plot]
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
-    return template.render(plots=plots)
-
-def render_top10(oa,pos,temp_dir, temp_file):
-    plots = [oa.overall_top_10_player()]
-    for p in pos:
-        plots.append(p.pos_top_10_player())
-    env = Environment(loader=PackageLoader(PKG, temp_dir))
-    template = env.get_template(temp_file)
-    return template.render(plots=plots)
+    return template.render(plots=plots,table=dist_table)
 
 def render_regression(sr, temp_dir, temp_file):
     sr.df = sr.salaries_stats_regression()

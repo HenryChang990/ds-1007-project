@@ -94,3 +94,12 @@ body {
 .pie g.mpld3-xaxis, .pie g.mpld3-yaxis {
     display: none;
 }
+
+.no-y-axis g.mpld3-yaxis text {
+    display: none;
+}
+
+.no-x-axis g.mpld3-xaxis text {
+    display: none;
+}
+

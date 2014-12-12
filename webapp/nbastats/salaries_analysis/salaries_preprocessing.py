@@ -56,7 +56,7 @@ def merge_salaries_stats(salaries, year):
     """
     salaries_year = salaries[year].dropna(subset = ['SALARY'])
     stats_year = pd.read_csv('../data/nba_{}.csv'.format(year-1))
-    stats_year['POS'] = stats_year['POS'].apply(lambda x: x.replace(' ',''))
+    stats_year['POS'] = stats_year['POS'].apply(lambda x: str(x).replace(' ',''))
     stats_year = stats_year[stats_year['POS'].isin(['SG','PF','PG','SF','C'])]
     stats_year = stats_year.set_index(['PLAYER','POS'])
     stats_year = stats_year.drop('TEAM',1)
