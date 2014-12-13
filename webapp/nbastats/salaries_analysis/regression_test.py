@@ -124,7 +124,7 @@ class salaries_regression(object):
         nba_df_SA = nba_df_SA[self.df.RK < rank][['RK','TEAM','SALARY','Predicted','Difference']].reset_index(1) #reset only player as index
         nba_underpriced = nba_df_SA.sort(columns='Difference',ascending=True).head(10).sort(columns='Difference', ascending=False) #select top 10 underpriced players
         nba_underpriced['DIFF'] = nba_df_SA.Predicted - nba_df_SA.SALARY #calculate salaries difference between predicted and true one.
-        fig = plt.figure(figsize=(12,6))
+        fig = plt.figure(figsize=(9.5,6))
         ax = fig.add_subplot(111, axisbg='#EEEEEE')
         ax.grid(color='white', linestyle='solid')
         plt.barh(np.arange(len(nba_underpriced['SALARY'])),
@@ -144,6 +144,7 @@ class salaries_regression(object):
         ax.xaxis.set_label_coords(0.5,-0.08)
         ax.set_ylabel('Players', fontsize=16)
         ax.yaxis.set_label_coords(-0.02,0.5)
+        plt.tight_layout()
         self.salaries_analysis_add_text(ax,nba_underpriced,'')
         html = mpld3.fig_to_html(fig)
         plt.close()
@@ -162,7 +163,7 @@ class salaries_regression(object):
         nba_df_SA = nba_df_SA[self.df.RK < rank][['RK','TEAM','SALARY','Predicted','Difference']].reset_index(1)
         nba_overpriced = nba_df_SA.sort(columns='Difference',ascending=False).head(10).sort(columns='Difference',ascending=True) #select top 10 overpriced players.
         nba_overpriced['DIFF'] = nba_df_SA.SALARY - nba_df_SA.Predicted
-        fig = plt.figure(figsize=(12,6))
+        fig = plt.figure(figsize=(9.5,6))
         ax = fig.add_subplot(111, axisbg='#EEEEEE')
         ax.grid(color='white', linestyle='solid')
         plt.barh(np.arange(len(nba_overpriced['Predicted'])),
@@ -182,6 +183,7 @@ class salaries_regression(object):
         ax.xaxis.set_label_coords(0.5,-0.08)
         ax.set_ylabel('Players', fontsize=16)
         ax.yaxis.set_label_coords(-0.02,0.5)
+        plt.tight_layout()
         self.salaries_analysis_add_text(ax,nba_overpriced,'+')
         html = mpld3.fig_to_html(fig)
         plt.close()

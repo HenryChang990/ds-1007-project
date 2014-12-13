@@ -44,16 +44,27 @@
       <div class="row">
 	<div class="col-sm-3 col-md-2 sidebar">
 	  <ul class="nav nav-sidebar">
-	    <li class="active"><a href="/salaries/trend">Salaries Trend</a></li>
-	    <li><a href="/salaries/dist/2014">Salaries Distribution</a></li>
+	    <li><a href="/salaries/trend">Salaries Trend</a></li>
+	    <li class="active"><a href="/salaries/dist/2014">Salaries Distribution</a></li>
 	    <li><a href="/salaries/reg/2014">Regression Analysis</a></li>
 	  </ul>
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	    <div class="dropdown" align="right">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	      Year
+	      <span class="caret"></span>
+	      </button>
+	      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		{% for year in years %}
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="/salaries/dist/{{year}}">{{year}}</a></li>
+		{% endfor %}
+	      </ul>
+	    </div>  <!-- end of dropdown button -->
 
         <div class="panel panel-default">
-            <h2 class="panel-title panel-heading">Salaries Distribution</h2>
+          <h2 class="panel-title panel-heading">Salaries Distribution <small>{{year}}</small></h2>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -86,7 +97,7 @@
 	  <div class="col-md-12 col-sm-12 col-xs-10">
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Salaries Distribution in the League <small>2014</small></h3>
+          <h3 class="panel-title">Salaries Distribution in the League <small>{{year}}</small></h3>
 	      </div>
 	      <div class="panel-body">
 		{{plots[0]}}
@@ -97,7 +108,7 @@
 	  <div class="col-md-12 col-sm-12 col-xs-10">
 	    <div class="panel panel-default no-x-axis">
 	      <div class="panel-heading">
-		<h3 class="panel-title">Salaries Distribution by Position <small>2000</small></h3>
+          <h3 class="panel-title">Salaries Distribution by Position <small>{{year}}</small></h3>
 	      </div>
 	      <div class="panel-body">
 	        {{plots[1]}}
@@ -108,7 +119,7 @@
           <div class="col-md-12 col-sm-12 col-xs-10">
             <div class="panel panel-default no-y-axis">
               <div class="panel-heading">
-                <h3 class="panel-title">Salaries Distribution by Position <small>2000</small></h3>
+                <h3 class="panel-title">Salaries Distribution by Position <small>{{year}}</small></h3>
               </div>
               <div class="panel-body"> 
                 {{plots[2]}}

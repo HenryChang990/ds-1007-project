@@ -88,7 +88,7 @@ class overall_analysis(object):
         """
         salaries_top_10 = self.df[self.year].order(ascending=False).head(10).order(ascending=True) #get top 10 highest salaries
         salaries_top_10 = salaries_top_10.reset_index(1)
-        fig = plt.figure(figsize=(12,6))
+        fig = plt.figure(figsize=(10,6))
         ax = fig.add_subplot(111)
         ax.set_axis_bgcolor('#EEEEEE')
         ax.grid(color='white', linestyle='solid')
