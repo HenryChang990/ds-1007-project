@@ -94,5 +94,5 @@ def render_regression(sr, temp_dir, temp_file):
     plots = [sr.salaries_stats_regression_plot(),sr.underpriced_player(100),sr.overpriced_player(100)]
     env = Environment(loader=PackageLoader(PKG, temp_dir))
     template = env.get_template(temp_file)
-    return template.render(plots=plots,years=xrange(2000,2016),year=sr.year)
+    return template.render(plots=plots,years=xrange(2001,2016),year=sr.year)
     
