@@ -49,6 +49,9 @@ class salaries_regression(object):
         
         Note:
         By calling this function, you will get a scatter plot on predicted salaries (y axis) and true salaries (x axis).
+        
+        Return:
+        html: a string of html of regression plot.
         """
         regdata = self.df.reset_index(1)
         regdata = regdata[regdata['POS'].isin(['C','SF','PF','PG','SG'])]
@@ -118,12 +121,16 @@ class salaries_regression(object):
         
         Attribute:
         rank: a selected ranking range. e.g., if the user wants to see the top 10 overpriced player before ranking 100, then rank = 100
+        
+        Return:
+        html: a string of html of underpriced plot.
         """
         
         nba_df_SA = self.df[self.df.Predicted > 0] #drop players whose predicted salaries are negtive
         nba_df_SA = nba_df_SA[self.df.RK < rank][['RK','TEAM','SALARY','Predicted','Difference']].reset_index(1) #reset only player as index
         nba_underpriced = nba_df_SA.sort(columns='Difference',ascending=True).head(10).sort(columns='Difference', ascending=False) #select top 10 underpriced players
         nba_underpriced['DIFF'] = nba_df_SA.Predicted - nba_df_SA.SALARY #calculate salaries difference between predicted and true one.
+        
         fig = plt.figure(figsize=(9.5,6))
         ax = fig.add_subplot(111, axisbg='#EEEEEE')
         ax.grid(color='white', linestyle='solid')
@@ -157,12 +164,16 @@ class salaries_regression(object):
         
         Attributes:
         rank: a selected ranking. e.g., if the user wants to see the top 10 overpriced player before ranking 100, then rank = 100
+        
+        Return:
+        html: a string of html of underpriced plot.
         """
         
         nba_df_SA = self.df[self.df.Predicted > 0] #drop players whose predicted salaries are negtive
         nba_df_SA = nba_df_SA[self.df.RK < rank][['RK','TEAM','SALARY','Predicted','Difference']].reset_index(1)
         nba_overpriced = nba_df_SA.sort(columns='Difference',ascending=False).head(10).sort(columns='Difference',ascending=True) #select top 10 overpriced players.
         nba_overpriced['DIFF'] = nba_df_SA.SALARY - nba_df_SA.Predicted
+
         fig = plt.figure(figsize=(9.5,6))
         ax = fig.add_subplot(111, axisbg='#EEEEEE')
         ax.grid(color='white', linestyle='solid')

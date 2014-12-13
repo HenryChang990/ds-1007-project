@@ -10,8 +10,6 @@ import mpld3
 import os
 
 class overall_analysis(object):
-
-
     """
     This is a class for nba salaries overall analysis, it has following functions:
     1) Plot league average salaries trend from 2000-2015.
@@ -67,6 +65,7 @@ class overall_analysis(object):
         overall_dist = pd.DataFrame(self.df[self.year].describe()) #make a dataframe containing salaries statistics information for each year
         overall_dist = overall_dist.rename(columns={self.year: 'League'})
         overall_dist.League = overall_dist.League.apply(lambda x: int(x)) #convert all elements in dataframe to integers
+        
         ax = self.df[self.year].hist(bins=30,histtype='stepfilled', fc='#0077FF',alpha=0.5,figsize=(10,6))
         ax.set_axis_bgcolor('#EEEEEE')
         ax.grid(color='white', linestyle='solid')
@@ -88,6 +87,7 @@ class overall_analysis(object):
         """
         salaries_top_10 = self.df[self.year].order(ascending=False).head(10).order(ascending=True) #get top 10 highest salaries
         salaries_top_10 = salaries_top_10.reset_index(1)
+        
         fig = plt.figure(figsize=(10,6))
         ax = fig.add_subplot(111)
         ax.set_axis_bgcolor('#EEEEEE')
@@ -144,6 +144,7 @@ class position_analysis(object):
         html: a string of html of by-position salaries trend plot.
         """
         salaries_pos_by_year = self.df.groupby('POS').mean().dropna().T
+        
         ax = salaries_pos_by_year.plot(color=['skyblue', 'yellowgreen','gold', 'lightcoral', 'mediumpurple'], linewidth = 2.0, alpha=0.9, figsize=(10,6))
         ax.grid(color='white', linestyle='solid')
         ax.set_axis_bgcolor('#EEEEEE')

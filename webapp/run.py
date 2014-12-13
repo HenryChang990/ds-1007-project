@@ -4,9 +4,9 @@ import signal, os
 import pandas as pd
 import numpy as np
 from nbastats import rendering, utility
-from nbastats.salaries_analysis import salaries_stats_analysis_test
+from nbastats.salaries_analysis import salaries_stats_analysis
 from nbastats.salaries_analysis import salaries_preprocessing
-from nbastats.salaries_analysis import regression_test
+from nbastats.salaries_analysis import regression
 
 # define some constants
 YEARS = xrange(2000, 2015)
@@ -84,20 +84,23 @@ class PlayerByYearHandler(tornado.web.RequestHandler):
         self.write(rendering.render_player(player, stats, years, year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class TrendHandler(tornado.web.RequestHandler):
+    """ Request Handler for /salaries/trend """
     def get(self):
-        oa = salaries_stats_analysis_test.overall_analysis()
-        pos = salaries_stats_analysis_test.position_analysis()
+        oa = salaries_stats_analysis.overall_analysis()
+        pos = salaries_stats_analysis.position_analysis()
         self.write(rendering.render_trend(oa, pos, TEMPLATE_DIR, 'salaries_trend.html'))
 
 class DistributionHandler(tornado.web.RequestHandler):
+    """ Request Handler for /salaries/dist """
     def get(self, year):
-        oa = salaries_stats_analysis_test.overall_analysis(int(year))
-        pos = salaries_stats_analysis_test.position_analysis(int(year))
+        oa = salaries_stats_analysis.overall_analysis(int(year))
+        pos = salaries_stats_analysis.position_analysis(int(year))
         self.write(rendering.render_distribution(oa, pos, TEMPLATE_DIR, 'salaries_distribution.html'))
 
 class RegressionHandler(tornado.web.RequestHandler):
+    """ Request Handler for /salaries/reg """
     def get(self,year):
-        sr = regression_test.salaries_regression(int(year))
+        sr = regression.salaries_regression(int(year))
         self.write(rendering.render_regression(sr, TEMPLATE_DIR, 'salaries_regression.html'))
 
 

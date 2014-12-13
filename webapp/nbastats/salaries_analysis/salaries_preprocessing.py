@@ -1,3 +1,5 @@
+__author__="Yi Liu"
+
 import numpy as np
 import pandas as pd
 import os
@@ -25,7 +27,7 @@ def salaries_preprocessing_by_year():
     df = salaries_preprocessing()
     df.columns = df.columns.get_level_values(1)
     salaries_by_year = df['SALARY']
-    salaries_by_year.columns=xrange(2000,2016)
+    salaries_by_year.columns=xrange(2000,2016) #rename columns names with years
     return salaries_by_year
 
 
@@ -49,15 +51,15 @@ def merge_salaries_stats(salaries, year):
     *statistics year = salaries year - 1*
     
     Attributes:
-    salaries: preprocessed salaries dataset
-    year: a salaries year selected by user, from 2000 to 2015
+    salaries: a preprocessed salaries dataset
+    year: a salaries year, from 2000 to 2015
     
     Return:
     a merged dataframe with salaries and nba stats dataset for the selected year.
     """
     salaries_year = salaries[year].dropna(subset = ['SALARY'])
-    stats_year = pd.read_csv(os.path.dirname(os.path.realpath(__file__))+'/../static/data/stats_{}.csv'.format(year-1))
-    stats_year = stats_year[stats_year['POS'].isin(['C','PF','PG','SF','SG'])]
+    stats_year = pd.read_csv(os.path.dirname(os.path.realpath(__file__))+'/../static/data/stats_{}.csv'.format(year-1)) #load stats data
+    stats_year = stats_year[stats_year['POS'].isin(['C','PF','PG','SF','SG'])] #check positions 
     stats_year = stats_year.sort(columns='PLAYER')
     stats_year = stats_year.drop_duplicates(subset=['PLAYER','POS'])
     stats_year = stats_year.set_index(['PLAYER','POS'])
