@@ -51,7 +51,9 @@
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	    <div class="dropdown" align="right">
+    <div class="page-header">
+      <h1>Salaries Distribution Analysis <small>{{year}}</small></h1>
+      <div class="dropdown" align="right">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	      Year
 	      <span class="caret"></span>
@@ -62,6 +64,7 @@
 		{% endfor %}
 	      </ul>
 	    </div>  <!-- end of dropdown button -->
+    </div>  <!--end of page-header-->
 
         <div class="panel panel-default">
           <h2 class="panel-title panel-heading">Salaries Distribution <small>{{year}}</small></h2>
@@ -119,7 +122,7 @@
           <div class="col-md-12 col-sm-12 col-xs-10">
             <div class="panel panel-default no-y-axis">
               <div class="panel-heading">
-                <h3 class="panel-title">Salaries Distribution by Position <small>{{year}}</small></h3>
+                <h3 class="panel-title">Top 10 Salaries  <small>{{year}}</small></h3>
               </div>
               <div class="panel-body"> 
                 {{plots[2]}}

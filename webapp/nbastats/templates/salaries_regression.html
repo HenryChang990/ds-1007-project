@@ -51,7 +51,14 @@
 	</div>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="page-header">
+      <h1>Regression Analysis</h1>
+      <p style='font-size:140%'>
+      &#8718; We analyze players' salaries with their last-year performances data.<br>
+      &#8718; We predict salaries with OLS linear modeling.<br>
+      &#8718; We analyze overpriced and underpriced players.<br>
 
+      </p>
 	    <div class="dropdown" align="right">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	      Year
@@ -62,14 +69,24 @@
 		<li role="presentation"><a role="menuitem" tabindex="-1" href="/salaries/reg/{{year}}">{{year}}</a></li>
 		{% endfor %}
 	      </ul>
-	    </div>  <!-- end of dropdown button -->
+      </div>  <!-- end of dropdown button -->
+    </div> <!-- end of page-header -->
+
 	  <div class="col-md-12 col-sm-12 col-xs-10">
 	    <div class="panel panel-default">
 	      <div class="panel-heading">
           <h3 class="panel-title">Salaries & NBA Stats Regression Results <small>{{year}}</small></h3>
 	      </div>
 	      <div class="panel-body">
-		{{plots[0]}}
+          {{plots[0]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Colors represent positions: C-blue; PF-green; SF-red; PG-gold; SG-purple.<br>
+            2) Point sizes represent points per game for each player.<br>
+            3) The reference line represents that predicted salary is the same with true salary.<br>
+            Thus, players under this line are overpriced; players above this line are underpriced.
+          </i></p>
 	      </div>
 	    </div>
 	  </div>
@@ -81,20 +98,36 @@
 	      </div>
 	      <div class="panel-body">
 		{{plots[1]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Each bar (blue part + grey part) represents predicted salaries for each player based on his performances.<br>
+            2) Blue part represents true salaries for each player.<br>
+            3) Text on grey part is minus underpriced ratio. True salaries= (1-ratio)*Predicted salaries
+            
+          </i></p>
 	      </div>
 	    </div>
 	  </div>
 	  
-          <div class="col-md-12 col-sm-12 col-xs-10">
-            <div class="panel panel-default no-y-axis">
-              <div class="panel-heading">
-                <h3 class="panel-title">Top 10 Overpriced Players <small>{{year}}</small></h3>
-              </div>
-              <div class="panel-body">
-                {{plots[2]}}
-              </div>
-            </div>
-          </div>
+    <div class="col-md-12 col-sm-12 col-xs-10">
+      <div class="panel panel-default no-y-axis">
+        <div class="panel-heading">
+          <h3 class="panel-title">Top 10 Overpriced Players <small>{{year}}</small></h3>
+        </div>
+        <div class="panel-body">
+          {{plots[2]}}
+          <p><i>
+            <br>
+            &#9733; Please note:<br>
+            1) Each bar (blue part + grey part) represents true salaries for each player.<br>
+            2) Blue part represents predicted salaries for each player based on his performances.<br>
+            3) Text on grey part is overpriced ratio. True salaries= (1+ratio)*Predicted salaries
+            
+          </i></p>
+        </div>
+      </div>
+    </div>
          
 <!-- todo-->
 	      </div>
