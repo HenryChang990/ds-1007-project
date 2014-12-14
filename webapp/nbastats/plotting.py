@@ -5,7 +5,7 @@ import os
 
 def hist_plot(data):
     """ plot histogram from data and return html raw code """
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10,6))
     ax = fig.add_subplot(111, axisbg='#EEEEEE')
     ax.grid(color='white', linestyle='solid')
     ax.hist(data, 30, histtype='stepfilled', fc='#0077FF', alpha=0.5)
