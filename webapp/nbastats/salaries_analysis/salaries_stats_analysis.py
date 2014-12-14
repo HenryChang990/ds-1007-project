@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from salaries_preprocessing import salaries_preprocessing
 from salaries_preprocessing import salaries_preprocessing_by_year
-from salaries_preprocessing import salaries_preprocessing_by_team
 import mpld3
 import os
 

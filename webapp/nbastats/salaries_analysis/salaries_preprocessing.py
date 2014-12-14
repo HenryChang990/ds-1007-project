@@ -31,19 +31,6 @@ def salaries_preprocessing_by_year():
     return salaries_by_year
 
 
-def salaries_preprocessing_by_team():
-    """
-    This function is to preprocess salaries dataset by team
-    Return:
-    df_team_salaries: a dataframe containing every team's average salaries for each year from 2000 to 2015
-    """
-    team_salaries = salaries_preprocessing()
-    dfs_team_salaries = {year: team_salaries[year].dropna().drop('RK',axis=1).groupby('TEAM').mean() for year in xrange(2000,2016)} #a dictionary containning every team's average salaries for each year 
-    df_team_salaries = pd.concat(dfs_team_salaries, axis=1, join='outer').dropna(thresh=5).T #merge dataframes; drop the team if it has less than 5-year non null data
-    df_team_salaries = df_team_salaries.reset_index(1)
-    return df_team_salaries
-
-
 def merge_salaries_stats(salaries, year):
     """
     This function is to merge salaries dataset and nba stats dataset for a given year.
