@@ -1,3 +1,7 @@
+'''
+Authored by Yijun Xiao, Yi Liu, Henry Chang
+
+'''
 import tornado.ioloop
 import tornado.web
 import signal, os
@@ -9,9 +13,9 @@ from nbastats.salaries_analysis import salaries_preprocessing
 from nbastats.salaries_analysis import regression
 
 # define some constants
-YEARS = xrange(2000, 2015)
-TEMPLATE_DIR = 'templates'
-FILE_DIR = os.path.dirname(os.path.realpath(__file__))
+YEARS = xrange(2000, 2015)    # Range of years covered in the analysis
+TEMPLATE_DIR = 'templates'    # Template directory
+FILE_DIR = os.path.dirname(os.path.realpath(__file__))    # Get this file's directory name
 
 class OverviewHandler(tornado.web.RequestHandler):
     """ Request Handler for /overview/year """
@@ -32,8 +36,7 @@ class PositionHandler(tornado.web.RequestHandler):
             filename = FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(year)
             stats = pd.read_csv(filename)
         except IOError:
-            print filename
-            print 'data not found'
+            print 'data not found'           
             raise tornado.web.HTTPError(500)
         pos = position.upper()
         self.write(rendering.render_leaders(stats[stats.POS==pos], position, 8, year, TEMPLATE_DIR, 'overview.html'))
@@ -51,7 +54,7 @@ class PlayersListHandler(tornado.web.RequestHandler):
 class PlayersOverviewHandler(tornado.web.RequestHandler):
     """ Request handler for /players/league_info """
     def get(self):
-        position_counts = {}
+        position_counts = {}    # store position counts for each year
         for year in YEARS:
             try:
                 stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(year))
@@ -63,24 +66,36 @@ class PlayersOverviewHandler(tornado.web.RequestHandler):
 class PlayerHandler(tornado.web.RequestHandler):
     """ Request handler for player individual pages """
     def get(self, option, name):
-        stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/players_{}.csv'.format(option), index_col='PLAYER')
-        player = utility.url_to_name(name)
-        img_src = stats.ix[player]['IMG']
+        try:
+            stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/players_{}.csv'.format(option), index_col='PLAYER')
+        except IOError as e:
+            raise tornado.web.HTTPError(500)
+        player = utility.url_to_name(name)    # convert from url-friendly to formal name
+        img_src = stats.ix[player]['IMG']    # get player headshot address
         if not img_src:
-            img_src = None
+            img_src = None    # handle missing img url, currently do nothing. Can use a default image instead
         years = stats.ix[player]['YEARS'].strip().split()
-        last_year = years[-1]
-        stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(last_year), index_col='PLAYER')
+        last_year = years[-1]    # display most recent year stats for the player
+        try:
+            stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(last_year), index_col='PLAYER')
+        except IOError:
+            raise tornado.web.HTTPError(500)            
         self.write(rendering.render_player(player, stats, years, last_year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class PlayerByYearHandler(tornado.web.RequestHandler):
-    """ """
+    """ Request handler for /players/name/year"""
     def get(self, option, name, year):
-        stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/players_{}.csv'.format(option), index_col='PLAYER')
-        player = utility.url_to_name(name)
-        img_src = stats.ix[player]['IMG']
+        try:
+            stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/players_{}.csv'.format(option), index_col='PLAYER')
+        except IOError:
+            raise tornado.web.HTTPError(500)            
+        player = utility.url_to_name(name)    # convert from url-friendly to formal name
+        img_src = stats.ix[player]['IMG']    # get player headshot address
         years = stats.ix[player]['YEARS'].strip().split()
-        stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(year), index_col='PLAYER')
+        try:
+            stats = pd.read_csv(FILE_DIR + '/nbastats/static/data/stats_{}.csv'.format(year), index_col='PLAYER')
+        except IOError:
+            raise tornado.web.HTTPError(500)            
         self.write(rendering.render_player(player, stats, years, year, option, img_src, TEMPLATE_DIR, 'player.html'))
 
 class TrendHandler(tornado.web.RequestHandler):
@@ -122,14 +137,16 @@ def make_app():
         (r'/salaries/trend', TrendHandler),
         (r'/salaries/dist/(20[01][0-9])', DistributionHandler),
         (r'/salaries/reg/(20[01][0-9])', RegressionHandler),
-        (r'/.*', tornado.web.RedirectHandler, {'url': '/overview/2014'}),
+        (r'/.*', tornado.web.RedirectHandler, {'url': '/overview/2014'}),    # redirect all other requests to overview page
     ], **settings)
 
 def on_shutdown():
+    """ Handle keyboard interrupt """
     print 'Shutting down'
     tornado.ioloop.IOLoop.instance().stop()
 
 def main():
+    """ main program, start local server """
     app = make_app()
     app.listen(8080)
     ioloop = tornado.ioloop.IOLoop.instance()

@@ -1,9 +1,15 @@
+'''
+Authored by Yi Liu, Yijun Xiao
+
+'''
 import unittest
 import numpy as np
 import pandas as pd
+
 from nbastats.salaries_analysis.salaries_preprocessing import salaries_preprocessing_by_year
 from nbastats.salaries_analysis.salaries_stats_analysis import position_analysis
 from nbastats.salaries_analysis.regression import salaries_regression
+from nbastats.utility import count_position, url_to_name, name_to_url
 
 class data_clean_by_year_Test(unittest.TestCase):
     def test_year(self):
@@ -40,11 +46,52 @@ class regression_test(unittest.TestCase):
         self.assertIn('Predicted',regresults) #check if predicted salaries data is in the regression result dataframe
         self.assertIn('Difference',regresults) #check if salaries' difference ratio data is in the regression result dataframe
 
+class count_position_test(unittest.TestCase):
+    def runTest(self):
+        stats = pd.DataFrame([dict(PLAYER='Kobe', POS='SG'), dict(PLAYER='T-Mac', POS='SG'),\
+                              dict(PLAYER='Yao Ming', POS='C'), dict(PLAYER='Tim Duncan', POS='PF'),\
+                              dict(PLAYER='Kevin Garnett', POS='PF'), dict(PLAYER='LeBron', POS='SF'),\
+                              dict(PLAYER='Kevin Durant', POS='SF'), dict(PLAYER='Melo', POS='SF'),\
+                              dict(PLAYER='Steve Nash', POS='PG')])
+        counts = count_position(stats)
+        self.assertTrue((counts==np.array([1, 2, 3, 2, 1])).all())
 
+class url_to_name_test(unittest.TestCase):
+    def test_normal(self):
+        urls = ['steve-nash', 'kobe-bryant', 'yao-ming']
+        names = ['Steve Nash', 'Kobe Bryant', 'Yao Ming']
+        for i in xrange(len(urls)):
+            self.assertEqual(url_to_name(urls[i]), names[i])
+            
+    def test_dash(self):
+        urls = ['darius-johnson-odom', 'al-farouq-aminu']
+        names = ['Darius Johnson-Odom', 'Al-Farouq Aminu']
+        for i in xrange(len(urls)):
+            self.assertEqual(url_to_name(urls[i]), names[i])
 
+    def test_apostrophe(self):
+        urls = ["shaq-o'neal", "terry-o'quinn"]
+        names = ["Shaq O'Neal", "Terry O'Quinn"]
+        for i in xrange(len(urls)):
+            self.assertEqual(url_to_name(urls[i]), names[i])
 
+    def test_lebron(self):
+        urls = ['lebron-james', 'tracy-mcgrady', 'antonio-mcdyess', 'desagana-diop']
+        names = ['LeBron James', 'Tracy McGrady', 'Antonio McDyess', 'DeSagana Diop']
+        for i in xrange(len(urls)):
+            self.assertEqual(url_to_name(urls[i]), names[i])
+            
+    def test_iii(self):
+        self.assertEqual(url_to_name('john-lucas-iii'), 'John Lucas III')
 
-
+class name_to_url_test(unittest.TestCase):
+    def runTest(self):
+        names = ['Steve Nash', 'Al-Farouq Aminu', "Shaq O'Neal", 'Tracy McGrady', 'John Lucas III']
+        urls = ['steve-nash', 'al-farouq-aminu', "shaq-o'neal", 'tracy-mcgrady', 'john-lucas-iii']
+        for i in xrange(len(urls)):
+            self.assertEqual(name_to_url(names[i]), urls[i])
+                        
+    
 if __name__ == '__main__':
     unittest.main()
 

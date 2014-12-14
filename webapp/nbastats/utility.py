@@ -1,3 +1,7 @@
+'''
+Authored by Yijun Xiao
+
+'''
 import numpy as np
 import string
 
