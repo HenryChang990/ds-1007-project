@@ -1,3 +1,8 @@
+'''
+Authored by Yijun Xiao, Henry Chang
+
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 import mpld3
