@@ -1,3 +1,5 @@
+__author__='Yi Liu'
+
 class Error(Exception):
     pass
 

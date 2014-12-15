@@ -29,7 +29,7 @@ Open [localhost:8080/](localhost:8080/) in your browser to access the web app.
    
     **players** page shows pie plots and trending of league-wide number of players in each position. In each player's individual page, a radar plot showing the specific player's ability ranking of the specified season is presented.
    
-    **salaries** page contains analysis conducted with respect to player's salaries.
+    **salaries** page contains analysis conducted with respect to player's salaries, including salaries trending, distribution and regression analysis with players' performances. Based on regression analysis, top overpriced and underpriced players are also presented.
    
 2. **What input the program takes?**
 	
