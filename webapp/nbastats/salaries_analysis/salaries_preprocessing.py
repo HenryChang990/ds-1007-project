@@ -48,8 +48,8 @@ def merge_salaries_stats(salaries, year):
     Return:
     a merged dataframe with salaries and nba stats dataset for the selected year.
     """
-    salaries_year = salaries[year].dropna(subset = ['SALARY'])
     try:
+        salaries_year = salaries[year].dropna(subset = ['SALARY'])
         stats_year = pd.read_csv(os.path.dirname(os.path.realpath(__file__))+'/../static/data/stats_{}.csv'.format(year-1)) #load stats data
     except:
         raise cannotLoadDataError('NBA Stats Data Not Found!')

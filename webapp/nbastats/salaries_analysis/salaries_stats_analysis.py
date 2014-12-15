@@ -63,7 +63,7 @@ class overall_analysis(object):
         """
         overall_dist = pd.DataFrame(self.df[self.year].describe()) #make a dataframe containing salaries statistics information for each year
         overall_dist = overall_dist.rename(columns={self.year: 'League'})
-        overall_dist.League = overall_dist.League.apply(lambda x: int(x)) #convert all elements in dataframe to integers
+        overall_dist['League'] = overall_dist['League'].apply(lambda x: int(x)) #convert all elements in dataframe to integers
         
         ax = self.df[self.year].hist(bins=30,histtype='stepfilled', fc='#0077FF',alpha=0.5,figsize=(10,6))
         ax.set_axis_bgcolor('#EEEEEE')

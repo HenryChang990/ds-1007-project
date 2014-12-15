@@ -6,12 +6,18 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from nbastats.salaries_analysis.salaries_preprocessing import salaries_preprocessing_by_year
+from nbastats.salaries_analysis.salaries_preprocessing import salaries_preprocessing, merge_salaries_stats, salaries_preprocessing_by_year
 from nbastats.salaries_analysis.salaries_stats_analysis import position_analysis
 from nbastats.salaries_analysis.regression import salaries_regression
+from nbastats.salaries_analysis.exceptions import cannotLoadDataError
 from nbastats.utility import count_position, url_to_name, name_to_url
 
-class data_clean_by_year_Test(unittest.TestCase):
+class data_preprocessing_Test(unittest.TestCase):
+    def test_load_data(self):
+        salaries = salaries_preprocessing()
+        with self.assertRaises(cannotLoadDataError):
+            merge_salaries_stats(salaries,1999) #test if it can catch loading data error. There is no 1999 year data in our dataset.
+
     def test_year(self):
         sy = salaries_preprocessing_by_year()
         years = sy.columns #get columns labels
