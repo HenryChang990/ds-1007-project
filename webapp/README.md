@@ -1,4 +1,4 @@
-This is  the repo for the final project for **DS-GA 1007 Programming for Data Science** taught by Prof. Greg Watson at **NYU**. Team members are Yijun Xiao [https://github.com/yx887](), Yi Liu [https://github.com/ariesyi329](), and Henry Chang [https://github.com/HenryChang990]()
+This is  the repo for the final project for **DS-GA 1007 Programming for Data Science** taught by Prof. Greg Watson at **NYU**. Team members are Yijun Xiao [https://github.com/yx887](https://github.com/yx887), Yi Liu [https://github.com/ariesyi329](https://github.com/ariesyi329), and Henry Chang [https://github.com/HenryChang990](https://github.com/HenryChang990).
 
 This particular project is a web application for NBA stats analysis and visualization.
 Data comes from [espn.go.com/nba/](http://espn.go.com/nba/)
