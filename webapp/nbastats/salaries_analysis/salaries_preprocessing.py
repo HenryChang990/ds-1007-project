@@ -3,6 +3,7 @@ __author__="Yi Liu"
 import numpy as np
 import pandas as pd
 import os
+from exceptions import cannotLoadDataError
 
 def salaries_preprocessing():
     """
@@ -11,7 +12,10 @@ def salaries_preprocessing():
     """
     s_year = xrange(2000, 2016)
     #load 2000-2015 salaries data into a dictionary
-    dfs = {year:pd.read_csv(os.path.dirname(os.path.realpath(__file__))+"/../static/data/salaries_"+str(year)+".csv").dropna(subset = ['SALARY']) for year in s_year}
+    try:
+        dfs = {year:pd.read_csv(os.path.dirname(os.path.realpath(__file__))+"/../static/data/salaries_"+str(year)+".csv").dropna(subset = ['SALARY']) for year in s_year}
+    except:
+        raise cannotLoadDataError('Salaries Data Not Found!')
     for year in s_year:
         dfs[year]['POS'].fillna('N', inplace=True)
         dfs[year] = dfs[year].set_index(['PLAYER','POS'])
@@ -45,7 +49,10 @@ def merge_salaries_stats(salaries, year):
     a merged dataframe with salaries and nba stats dataset for the selected year.
     """
     salaries_year = salaries[year].dropna(subset = ['SALARY'])
-    stats_year = pd.read_csv(os.path.dirname(os.path.realpath(__file__))+'/../static/data/stats_{}.csv'.format(year-1)) #load stats data
+    try:
+        stats_year = pd.read_csv(os.path.dirname(os.path.realpath(__file__))+'/../static/data/stats_{}.csv'.format(year-1)) #load stats data
+    except:
+        raise cannotLoadDataError('NBA Stats Data Not Found!')
     stats_year = stats_year[stats_year['POS'].isin(['C','PF','PG','SF','SG'])] #check positions 
     stats_year = stats_year.sort(columns='PLAYER')
     stats_year = stats_year.drop_duplicates(subset=['PLAYER','POS'])
